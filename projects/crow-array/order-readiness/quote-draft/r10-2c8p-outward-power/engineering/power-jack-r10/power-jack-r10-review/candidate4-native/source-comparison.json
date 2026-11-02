@@ -1,0 +1,606 @@
+{
+  "subjects": {
+    "projects/crow-array/order-readiness/quote-draft/r9-2c8p-home-clock/native/pcb/carrier/carrier.kicad_pcb": "ddc5f5b1c3cba999db77b1e2a0a8dd24f004579ec825ccec991169a0af3aa099",
+    "projects/crow-array/order-readiness/power-jack-r10/candidate4/native/pcb/carrier/carrier.kicad_pcb": "1fc774524ef57efdd3a644de338328837e42ba648d3a4dd6bb78bad44e8852a1"
+  },
+  "companions": {
+    "kicad_sch": {
+      "old": "0d84b8ab9e751dbbb0f31289266346ebae56581c38052ef4007fb03790566955",
+      "new": "0d84b8ab9e751dbbb0f31289266346ebae56581c38052ef4007fb03790566955",
+      "byte_identical": true
+    },
+    "kicad_pro": {
+      "old": "2f23ae4cac9d2a53237ce2fa53170226739aa8bc2e4164fbb0e2842c464f5d1b",
+      "new": "2f23ae4cac9d2a53237ce2fa53170226739aa8bc2e4164fbb0e2842c464f5d1b",
+      "byte_identical": true
+    }
+  },
+  "footprint_count": 142,
+  "only_changed_footprint": "J1",
+  "footprint_differences": {
+    "J1": {
+      "old": {
+        "uuid": "e0be3781-0229-5b67-bdde-fa88b4f6383e",
+        "value": "PJ-102AH / 12V CENTER POSITIVE",
+        "library": "BarrelJack_CUI_PJ-102AH_Horizontal",
+        "position": [
+          188.0,
+          2.2
+        ],
+        "angle": 0.0,
+        "layer": 0,
+        "pads": [
+          {
+            "number": "1",
+            "net": "/VIN12",
+            "position": [
+              188.0,
+              2.2
+            ],
+            "local_position": [
+              0.0,
+              0.0
+            ],
+            "size": [
+              2.6,
+              2.6
+            ],
+            "drill": [
+              1.6,
+              1.6
+            ],
+            "shape": 1,
+            "attribute": 0,
+            "layers": "00000000_00000000_55555555_5555555f"
+          },
+          {
+            "number": "2",
+            "net": "/GND",
+            "position": [
+              188.0,
+              8.2
+            ],
+            "local_position": [
+              0.0,
+              6.0
+            ],
+            "size": [
+              2.6,
+              2.6
+            ],
+            "drill": [
+              1.6,
+              1.6
+            ],
+            "shape": 0,
+            "attribute": 0,
+            "layers": "00000000_00000000_55555555_5555555f"
+          },
+          {
+            "number": "3",
+            "net": "unconnected-(J1-SLEEVE_SWITCH-Pad3)",
+            "position": [
+              192.7,
+              5.2
+            ],
+            "local_position": [
+              4.7,
+              3.0
+            ],
+            "size": [
+              2.6,
+              2.6
+            ],
+            "drill": [
+              1.6,
+              1.6
+            ],
+            "shape": 0,
+            "attribute": 0,
+            "layers": "00000000_00000000_55555555_5555555f"
+          }
+        ]
+      },
+      "new": {
+        "uuid": "e0be3781-0229-5b67-bdde-fa88b4f6383e",
+        "value": "PJ-102AH / 12V CENTER POSITIVE",
+        "library": "BarrelJack_CUI_PJ-102AH_Horizontal",
+        "position": [
+          188.0,
+          14.7
+        ],
+        "angle": 180.0,
+        "layer": 0,
+        "pads": [
+          {
+            "number": "1",
+            "net": "/VIN12",
+            "position": [
+              188.0,
+              14.7
+            ],
+            "local_position": [
+              0.0,
+              0.0
+            ],
+            "size": [
+              2.6,
+              2.6
+            ],
+            "drill": [
+              1.6,
+              1.6
+            ],
+            "shape": 1,
+            "attribute": 0,
+            "layers": "00000000_00000000_55555555_5555555f"
+          },
+          {
+            "number": "2",
+            "net": "/GND",
+            "position": [
+              188.0,
+              8.7
+            ],
+            "local_position": [
+              0.0,
+              6.0
+            ],
+            "size": [
+              2.6,
+              2.6
+            ],
+            "drill": [
+              1.6,
+              1.6
+            ],
+            "shape": 0,
+            "attribute": 0,
+            "layers": "00000000_00000000_55555555_5555555f"
+          },
+          {
+            "number": "3",
+            "net": "unconnected-(J1-SLEEVE_SWITCH-Pad3)",
+            "position": [
+              183.3,
+              11.7
+            ],
+            "local_position": [
+              4.7,
+              3.0
+            ],
+            "size": [
+              2.6,
+              2.6
+            ],
+            "drill": [
+              1.6,
+              1.6
+            ],
+            "shape": 0,
+            "attribute": 0,
+            "layers": "00000000_00000000_55555555_5555555f"
+          }
+        ]
+      }
+    }
+  },
+  "track_counts": {
+    "old": 1355,
+    "new": 1358
+  },
+  "changed_tracks": {
+    "d16bd0dc-47fb-5aa5-90ed-45444b4766c6": {
+      "old": null,
+      "new": {
+        "kind": "PCB_TRACK",
+        "net": "/VIN12",
+        "layer": 0,
+        "start": [
+          182.5,
+          14.7
+        ],
+        "end": [
+          179.5,
+          11.7
+        ],
+        "width": 0.8
+      }
+    },
+    "c425026a-5549-534f-b9d1-0f06be7fb6d1": {
+      "old": null,
+      "new": {
+        "kind": "PCB_TRACK",
+        "net": "/FUSED12",
+        "layer": 0,
+        "start": [
+          194.5,
+          4.5
+        ],
+        "end": [
+          194.5,
+          15.1
+        ],
+        "width": 0.8
+      }
+    },
+    "a9ed6c7e-635c-4e17-ac2e-3606ba933263": {
+      "old": {
+        "kind": "PCB_TRACK",
+        "net": "/VIN12",
+        "layer": 0,
+        "start": [
+          178.4762,
+          2.2
+        ],
+        "end": [
+          177.3082,
+          3.368
+        ],
+        "width": 0.8
+      },
+      "new": null
+    },
+    "97a07b75-bcc1-5986-b066-2da09c515e14": {
+      "old": null,
+      "new": {
+        "kind": "PCB_TRACK",
+        "net": "/FUSED12",
+        "layer": 0,
+        "start": [
+          179.5,
+          4.545
+        ],
+        "end": [
+          177.3,
+          6.745
+        ],
+        "width": 0.8
+      }
+    },
+    "f4e65d06-5317-56b0-920d-c034b376def5": {
+      "old": null,
+      "new": {
+        "kind": "PCB_TRACK",
+        "net": "/FUSED12",
+        "layer": 0,
+        "start": [
+          177.3,
+          11.2
+        ],
+        "end": [
+          178.5,
+          12.4
+        ],
+        "width": 0.8
+      }
+    },
+    "08432f65-ae0f-588c-887b-69d9d724d4f9": {
+      "old": null,
+      "new": {
+        "kind": "PCB_TRACK",
+        "net": "/FUSED12",
+        "layer": 0,
+        "start": [
+          194.5,
+          15.1
+        ],
+        "end": [
+          190.0,
+          19.6
+        ],
+        "width": 0.8
+      }
+    },
+    "f2c33287-fed8-5c10-a054-5f8e7820e8b9": {
+      "old": null,
+      "new": {
+        "kind": "PCB_TRACK",
+        "net": "/FUSED12",
+        "layer": 0,
+        "start": [
+          192.5,
+          2.5
+        ],
+        "end": [
+          194.5,
+          4.5
+        ],
+        "width": 0.8
+      }
+    },
+    "e130a176-8d6d-55c7-9c17-41abd873eabc": {
+      "old": null,
+      "new": {
+        "kind": "PCB_TRACK",
+        "net": "/VIN12",
+        "layer": 0,
+        "start": [
+          179.5,
+          11.7
+        ],
+        "end": [
+          179.5,
+          9.455
+        ],
+        "width": 0.8
+      }
+    },
+    "71e73d6b-c135-4278-bfbb-66d8e78f4aff": {
+      "old": {
+        "kind": "PCB_TRACK",
+        "net": "/FUSED12",
+        "layer": 0,
+        "start": [
+          179.5,
+          6.0767
+        ],
+        "end": [
+          190.0,
+          16.5767
+        ],
+        "width": 0.8
+      },
+      "new": null
+    },
+    "a8dabcd0-0cd6-5d49-9d25-5a6696603699": {
+      "old": null,
+      "new": {
+        "kind": "PCB_TRACK",
+        "net": "/FUSED12",
+        "layer": 0,
+        "start": [
+          177.3,
+          6.745
+        ],
+        "end": [
+          177.3,
+          11.2
+        ],
+        "width": 0.8
+      }
+    },
+    "4c0ffafb-5755-4c31-801b-b0978b301d14": {
+      "old": {
+        "kind": "PCB_TRACK",
+        "net": "/FUSED12",
+        "layer": 0,
+        "start": [
+          179.5,
+          4.545
+        ],
+        "end": [
+          179.5,
+          6.0767
+        ],
+        "width": 0.8
+      },
+      "new": null
+    },
+    "70cb7b5c-8a3c-5c9e-85ac-57907996d3b2": {
+      "old": null,
+      "new": {
+        "kind": "PCB_TRACK",
+        "net": "/FUSED12",
+        "layer": 0,
+        "start": [
+          179.5,
+          2.5
+        ],
+        "end": [
+          192.5,
+          2.5
+        ],
+        "width": 0.8
+      }
+    },
+    "8bb8780e-4a88-4281-8ee4-6494d7c98aef": {
+      "old": {
+        "kind": "PCB_TRACK",
+        "net": "/VIN12",
+        "layer": 0,
+        "start": [
+          179.5,
+          9.455
+        ],
+        "end": [
+          179.5,
+          7.9233
+        ],
+        "width": 0.8
+      },
+      "new": null
+    },
+    "e9bf8ab2-408c-423c-b0bc-d81510f95125": {
+      "old": {
+        "kind": "PCB_TRACK",
+        "net": "/VIN12",
+        "layer": 0,
+        "start": [
+          177.3082,
+          5.7315
+        ],
+        "end": [
+          179.5,
+          7.9233
+        ],
+        "width": 0.8
+      },
+      "new": null
+    },
+    "6685e966-5220-4183-be1b-ab5673b43fac": {
+      "old": {
+        "kind": "PCB_TRACK",
+        "net": "/FUSED12",
+        "layer": 0,
+        "start": [
+          190.0,
+          16.5767
+        ],
+        "end": [
+          190.0,
+          19.6
+        ],
+        "width": 0.8
+      },
+      "new": null
+    },
+    "6131c984-7826-568d-82e4-11b4bb7c0e18": {
+      "old": null,
+      "new": {
+        "kind": "PCB_TRACK",
+        "net": "/VIN12",
+        "layer": 0,
+        "start": [
+          188.0,
+          14.7
+        ],
+        "end": [
+          182.5,
+          14.7
+        ],
+        "width": 0.8
+      }
+    },
+    "fdc81a87-24ef-491e-bac6-9d59292ded5e": {
+      "old": {
+        "kind": "PCB_TRACK",
+        "net": "/VIN12",
+        "layer": 0,
+        "start": [
+          188.0,
+          2.2
+        ],
+        "end": [
+          178.4762,
+          2.2
+        ],
+        "width": 0.8
+      },
+      "new": null
+    },
+    "29bf7b2d-f838-4651-8cfa-67fe244d8be6": {
+      "old": {
+        "kind": "PCB_TRACK",
+        "net": "/VIN12",
+        "layer": 0,
+        "start": [
+          177.3082,
+          3.368
+        ],
+        "end": [
+          177.3082,
+          5.7315
+        ],
+        "width": 0.8
+      },
+      "new": null
+    },
+    "795ce68f-f253-5418-ac06-68ae4a8efba8": {
+      "old": null,
+      "new": {
+        "kind": "PCB_TRACK",
+        "net": "/FUSED12",
+        "layer": 0,
+        "start": [
+          179.5,
+          4.545
+        ],
+        "end": [
+          179.5,
+          2.5
+        ],
+        "width": 0.8
+      }
+    }
+  },
+  "board_thickness_mm": 1.6,
+  "outline_byte_geometry_unchanged": true,
+  "zone_changes": [
+    {
+      "old": {
+        "uuid": "7d82bcca-b1ed-4560-904b-a50284924689",
+        "net": "/FUSED12",
+        "layers": "00000000_00000000_00000000_00000001",
+        "contours": [
+          [
+            [
+              177.5,
+              10.9
+            ],
+            [
+              186.2,
+              10.9
+            ],
+            [
+              186.2,
+              10.0
+            ],
+            [
+              199.0,
+              10.0
+            ],
+            [
+              199.0,
+              22.5
+            ],
+            [
+              186.0,
+              22.5
+            ],
+            [
+              186.0,
+              16.2
+            ],
+            [
+              177.5,
+              16.2
+            ]
+          ]
+        ]
+      },
+      "new": {
+        "uuid": "7d82bcca-b1ed-4560-904b-a50284924689",
+        "net": "/FUSED12",
+        "layers": "00000000_00000000_00000000_00000001",
+        "contours": [
+          [
+            [
+              177.5,
+              10.9
+            ],
+            [
+              186.2,
+              10.9
+            ],
+            [
+              186.2,
+              5.5
+            ],
+            [
+              199.0,
+              5.5
+            ],
+            [
+              199.0,
+              22.5
+            ],
+            [
+              186.0,
+              22.5
+            ],
+            [
+              186.0,
+              16.2
+            ],
+            [
+              177.5,
+              16.2
+            ]
+          ]
+        ]
+      }
+    }
+  ],
+  "stage_acceptance": false
+}

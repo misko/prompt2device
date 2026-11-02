@@ -1,0 +1,898 @@
+{
+  "accepted": false,
+  "coordinates": "right handed X, -nativeY, Z above native STEP top",
+  "board": "/home/mouse9911/gits/circuits-crow-stock-substitutions-20261101/projects/crow-array/order-readiness/quote-draft/r9-2c8p-home-clock/native/pcb/pod/pod.kicad_pcb",
+  "source_sha256": "d67134d2361f32f25a1f8841134f21f84791d3d36ede1acb74b383d5b007ceb9",
+  "inspection": "/home/mouse9911/gits/circuits-crow-stock-substitutions-20261101/projects/crow-array/order-readiness/render-review-20261101/pod-inspection.json",
+  "inspection_sha256": "b93c0758659833b83edba4dfa868bdee4da17f1c07bd2ace9d32d917001c8327",
+  "sources": {
+    "/home/mouse9911/gits/circuits-crow-stock-substitutions-20261101/vnext/skills/render-board/scripts/render_board.py": "9a5b501d6045f891b71eb84e2520e092ef9c74482241f93c8612bf906731cf64",
+    "/home/mouse9911/gits/circuits-crow-stock-substitutions-20261101/vnext/skills/render-board/scripts/native_snapshot.py": "b36702ceb602118da882fbf324cdadf61801cb7004d80eb33498dbb8b1897b5a",
+    "/home/mouse9911/gits/circuits-crow-stock-substitutions-20261101/vnext/tools/mechanical_kernel.py": "e739cd1b6e64df03a25b504f727c8d57a12dd8ffc75c019abc8485e30906a8c5"
+  },
+  "coverage": {
+    "C3": "unqualified_footprint_envelope_height_1mm",
+    "R8": "unqualified_footprint_envelope_height_1mm",
+    "C4": "unqualified_footprint_envelope_height_1mm",
+    "R6": "unqualified_footprint_envelope_height_1mm",
+    "D4": "unqualified_footprint_envelope_height_1mm",
+    "BZ1": "unqualified_footprint_envelope_height_1mm",
+    "C1": "unqualified_footprint_envelope_height_1mm",
+    "U2": "unqualified_footprint_envelope_height_1mm",
+    "R13": "unqualified_footprint_envelope_height_1mm",
+    "R10": "unqualified_footprint_envelope_height_1mm",
+    "R14": "unqualified_footprint_envelope_height_1mm",
+    "MH2": "unqualified_footprint_envelope_height_1mm",
+    "R1": "unqualified_footprint_envelope_height_1mm",
+    "R7": "unqualified_footprint_envelope_height_1mm",
+    "U1": "unqualified_footprint_envelope_height_1mm",
+    "MH3": "unqualified_footprint_envelope_height_1mm",
+    "MH1": "unqualified_footprint_envelope_height_1mm",
+    "Q1": "unqualified_footprint_envelope_height_1mm",
+    "C5": "unqualified_footprint_envelope_height_1mm",
+    "R12": "unqualified_footprint_envelope_height_1mm",
+    "D3": "unqualified_footprint_envelope_height_1mm",
+    "MH4": "unqualified_footprint_envelope_height_1mm",
+    "R9": "unqualified_footprint_envelope_height_1mm",
+    "Q2": "unqualified_footprint_envelope_height_1mm",
+    "R2": "unqualified_footprint_envelope_height_1mm",
+    "MIC1": "unqualified_footprint_envelope_height_1mm",
+    "D2": "unqualified_footprint_envelope_height_1mm",
+    "C2": "unqualified_footprint_envelope_height_1mm",
+    "R4": "unqualified_footprint_envelope_height_1mm",
+    "J1": "drawing_derived_inspection_solids",
+    "R11": "unqualified_footprint_envelope_height_1mm",
+    "R5": "unqualified_footprint_envelope_height_1mm",
+    "R3": "unqualified_footprint_envelope_height_1mm",
+    "D1": "unqualified_footprint_envelope_height_1mm",
+    "F1": "unqualified_footprint_envelope_height_1mm"
+  },
+  "connectors": {
+    "J1": {
+      "mpn": "RJHSE-5080",
+      "source": "Amphenol P-RJHSE-X080 RevA May22/2019, component-side PCB pattern, primary inch dimensions; retained rjhsex080.pdf SHA256 e96d3f6cde115981be470e0edd3159dfda3ebe1a453db0c45d525e629668a756",
+      "limitations": "Nominal housing and contact/peg centers. Cavity, latch, peg diameter/projection and circular contact profiles illustrative; no fit or plating acceptance.",
+      "witnesses": [
+        {
+          "pad": "1",
+          "expected": [
+            7.0,
+            8.5
+          ],
+          "error_mm": 0.0
+        },
+        {
+          "pad": "2",
+          "expected": [
+            8.016,
+            10.278
+          ],
+          "error_mm": 0.0019999999999988916
+        },
+        {
+          "pad": "3",
+          "expected": [
+            9.032,
+            8.5
+          ],
+          "error_mm": 0.0
+        },
+        {
+          "pad": "4",
+          "expected": [
+            10.048,
+            10.278
+          ],
+          "error_mm": 0.0019999999999988916
+        },
+        {
+          "pad": "5",
+          "expected": [
+            11.064,
+            8.5
+          ],
+          "error_mm": 0.0
+        },
+        {
+          "pad": "6",
+          "expected": [
+            12.08,
+            10.278
+          ],
+          "error_mm": 0.0019999999999988916
+        },
+        {
+          "pad": "7",
+          "expected": [
+            13.096,
+            8.5
+          ],
+          "error_mm": 0.0
+        },
+        {
+          "pad": "8",
+          "expected": [
+            14.112,
+            10.278
+          ],
+          "error_mm": 0.0019999999999988916
+        },
+        {
+          "peg": [
+            -2.794,
+            -2.54
+          ],
+          "expected": [
+            4.2059999999999995,
+            5.96
+          ],
+          "error_mm": 0.004000000000000448
+        },
+        {
+          "peg": [
+            9.906,
+            -2.54
+          ],
+          "expected": [
+            16.906,
+            5.96
+          ],
+          "error_mm": 0.004000000000001336
+        }
+      ],
+      "registration": "PASS",
+      "actual_native_direction": [
+        0.0,
+        -1.0
+      ],
+      "intended_native_direction": [
+        0,
+        -1
+      ],
+      "direction": "PASS",
+      "access": "NOT_EVALUATED"
+    }
+  },
+  "model_notes": [
+    "Drawing-derived connector diagnostics, not production-approved models.",
+    "All other component bodies are native-footprint XY envelopes with illustrative1mm heights; not collision evidence.",
+    "Carrier J1 outward direction is an independent edge-access requirement from prior mating review; do not change it to hide disagreement."
+  ],
+  "missing_connector_reviews": [],
+  "frames": {
+    "top": {
+      "projection": "orthographic",
+      "width": 1400,
+      "height": 938,
+      "focal_point": [
+        42.5,
+        -39.0,
+        5.104
+      ],
+      "position": [
+        42.5,
+        -39.0,
+        239.09927260440287
+      ],
+      "up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "parallel_scale": 42.900000000000006,
+      "clip": [
+        0.01,
+        475.9905452088057
+      ]
+    },
+    "bottom": {
+      "projection": "orthographic",
+      "width": 1400,
+      "height": 938,
+      "focal_point": [
+        42.5,
+        -39.0,
+        5.104
+      ],
+      "position": [
+        42.5,
+        -39.0,
+        -228.89127260440284
+      ],
+      "up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "parallel_scale": 42.900000000000006,
+      "clip": [
+        0.01,
+        475.9905452088057
+      ]
+    },
+    "north": {
+      "projection": "orthographic",
+      "width": 1400,
+      "height": 938,
+      "focal_point": [
+        42.5,
+        -39.0,
+        5.104
+      ],
+      "position": [
+        42.5,
+        194.99527260440286,
+        5.104
+      ],
+      "up": [
+        0.0,
+        -0.0,
+        1.0
+      ],
+      "parallel_scale": 31.322500000000005,
+      "clip": [
+        0.01,
+        475.9905452088057
+      ]
+    },
+    "south": {
+      "projection": "orthographic",
+      "width": 1400,
+      "height": 938,
+      "focal_point": [
+        42.5,
+        -39.0,
+        5.104
+      ],
+      "position": [
+        42.5,
+        -272.9952726044029,
+        5.104
+      ],
+      "up": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "parallel_scale": 31.322500000000005,
+      "clip": [
+        0.01,
+        475.9905452088057
+      ]
+    },
+    "east": {
+      "projection": "orthographic",
+      "width": 1400,
+      "height": 938,
+      "focal_point": [
+        42.5,
+        -39.0,
+        5.104
+      ],
+      "position": [
+        276.4952726044029,
+        -39.0,
+        5.104
+      ],
+      "up": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "parallel_scale": 28.743000000000002,
+      "clip": [
+        0.01,
+        475.9905452088057
+      ]
+    },
+    "west": {
+      "projection": "orthographic",
+      "width": 1400,
+      "height": 938,
+      "focal_point": [
+        42.5,
+        -39.0,
+        5.104
+      ],
+      "position": [
+        -191.49527260440286,
+        -39.0,
+        5.104
+      ],
+      "up": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "parallel_scale": 28.743000000000002,
+      "clip": [
+        0.01,
+        475.9905452088057
+      ]
+    },
+    "upper_000": {
+      "projection": "orthographic",
+      "width": 1400,
+      "height": 938,
+      "focal_point": [
+        42.5,
+        -39.0,
+        5.104
+      ],
+      "position": [
+        207.95964402416803,
+        -39.0,
+        170.56364402416804
+      ],
+      "up": [
+        -0.7071067811865475,
+        0.0,
+        0.7071067811865476
+      ],
+      "parallel_scale": 39.360674710680456,
+      "clip": [
+        0.01,
+        475.9905452088057
+      ]
+    },
+    "upper_045": {
+      "projection": "orthographic",
+      "width": 1400,
+      "height": 938,
+      "focal_point": [
+        42.5,
+        -39.0,
+        5.104
+      ],
+      "position": [
+        159.49763630220144,
+        77.99763630220143,
+        170.56364402416804
+      ],
+      "up": [
+        -0.5000000000000001,
+        -0.4999999999999999,
+        0.7071067811865477
+      ],
+      "parallel_scale": 51.128432690209365,
+      "clip": [
+        0.01,
+        475.9905452088057
+      ]
+    },
+    "upper_090": {
+      "projection": "orthographic",
+      "width": 1400,
+      "height": 938,
+      "focal_point": [
+        42.5,
+        -39.0,
+        5.104
+      ],
+      "position": [
+        42.50000000000001,
+        126.45964402416803,
+        170.56364402416804
+      ],
+      "up": [
+        -4.329780281177466e-17,
+        -0.7071067811865475,
+        0.7071067811865476
+      ],
+      "parallel_scale": 36.63831360311225,
+      "clip": [
+        0.01,
+        475.9905452088057
+      ]
+    },
+    "upper_135": {
+      "projection": "orthographic",
+      "width": 1400,
+      "height": 938,
+      "focal_point": [
+        42.5,
+        -39.0,
+        5.104
+      ],
+      "position": [
+        -74.49763630220143,
+        77.99763630220146,
+        170.56364402416804
+      ],
+      "up": [
+        0.4999999999999999,
+        -0.5000000000000001,
+        0.7071067811865477
+      ],
+      "parallel_scale": 51.128432690209365,
+      "clip": [
+        0.01,
+        475.9905452088057
+      ]
+    },
+    "upper_180": {
+      "projection": "orthographic",
+      "width": 1400,
+      "height": 938,
+      "focal_point": [
+        42.5,
+        -39.0,
+        5.104
+      ],
+      "position": [
+        -122.95964402416803,
+        -38.99999999999998,
+        170.56364402416804
+      ],
+      "up": [
+        0.7071067811865475,
+        -8.659560562354932e-17,
+        0.7071067811865476
+      ],
+      "parallel_scale": 39.36067471068046,
+      "clip": [
+        0.01,
+        475.9905452088057
+      ]
+    },
+    "upper_225": {
+      "projection": "orthographic",
+      "width": 1400,
+      "height": 938,
+      "focal_point": [
+        42.5,
+        -39.0,
+        5.104
+      ],
+      "position": [
+        -74.49763630220146,
+        -155.99763630220144,
+        170.56364402416804
+      ],
+      "up": [
+        0.5000000000000001,
+        0.4999999999999999,
+        0.7071067811865477
+      ],
+      "parallel_scale": 51.128432690209365,
+      "clip": [
+        0.01,
+        475.9905452088057
+      ]
+    },
+    "upper_270": {
+      "projection": "orthographic",
+      "width": 1400,
+      "height": 938,
+      "focal_point": [
+        42.5,
+        -39.0,
+        5.104
+      ],
+      "position": [
+        42.49999999999997,
+        -204.45964402416803,
+        170.56364402416804
+      ],
+      "up": [
+        1.2989340843532398e-16,
+        0.7071067811865475,
+        0.7071067811865476
+      ],
+      "parallel_scale": 36.63831360311225,
+      "clip": [
+        0.01,
+        475.9905452088057
+      ]
+    },
+    "upper_315": {
+      "projection": "orthographic",
+      "width": 1400,
+      "height": 938,
+      "focal_point": [
+        42.5,
+        -39.0,
+        5.104
+      ],
+      "position": [
+        159.4976363022014,
+        -155.9976363022015,
+        170.56364402416804
+      ],
+      "up": [
+        -0.49999999999999983,
+        0.5000000000000001,
+        0.7071067811865476
+      ],
+      "parallel_scale": 51.128432690209365,
+      "clip": [
+        0.01,
+        475.9905452088057
+      ]
+    },
+    "lower_000": {
+      "projection": "orthographic",
+      "width": 1400,
+      "height": 938,
+      "focal_point": [
+        42.5,
+        -39.0,
+        5.104
+      ],
+      "position": [
+        207.95964402416803,
+        -39.0,
+        -160.35564402416801
+      ],
+      "up": [
+        0.7071067811865475,
+        0.0,
+        0.7071067811865476
+      ],
+      "parallel_scale": 39.360674710680456,
+      "clip": [
+        0.01,
+        475.9905452088057
+      ]
+    },
+    "lower_045": {
+      "projection": "orthographic",
+      "width": 1400,
+      "height": 938,
+      "focal_point": [
+        42.5,
+        -39.0,
+        5.104
+      ],
+      "position": [
+        159.49763630220144,
+        77.99763630220143,
+        -160.35564402416801
+      ],
+      "up": [
+        0.5000000000000001,
+        0.4999999999999999,
+        0.7071067811865477
+      ],
+      "parallel_scale": 51.128432690209365,
+      "clip": [
+        0.01,
+        475.9905452088057
+      ]
+    },
+    "lower_090": {
+      "projection": "orthographic",
+      "width": 1400,
+      "height": 938,
+      "focal_point": [
+        42.5,
+        -39.0,
+        5.104
+      ],
+      "position": [
+        42.50000000000001,
+        126.45964402416803,
+        -160.35564402416801
+      ],
+      "up": [
+        4.329780281177466e-17,
+        0.7071067811865475,
+        0.7071067811865476
+      ],
+      "parallel_scale": 36.63831360311225,
+      "clip": [
+        0.01,
+        475.9905452088057
+      ]
+    },
+    "lower_135": {
+      "projection": "orthographic",
+      "width": 1400,
+      "height": 938,
+      "focal_point": [
+        42.5,
+        -39.0,
+        5.104
+      ],
+      "position": [
+        -74.49763630220143,
+        77.99763630220146,
+        -160.35564402416801
+      ],
+      "up": [
+        -0.4999999999999999,
+        0.5000000000000001,
+        0.7071067811865477
+      ],
+      "parallel_scale": 51.128432690209365,
+      "clip": [
+        0.01,
+        475.9905452088057
+      ]
+    },
+    "lower_180": {
+      "projection": "orthographic",
+      "width": 1400,
+      "height": 938,
+      "focal_point": [
+        42.5,
+        -39.0,
+        5.104
+      ],
+      "position": [
+        -122.95964402416803,
+        -38.99999999999998,
+        -160.35564402416801
+      ],
+      "up": [
+        -0.7071067811865475,
+        8.659560562354932e-17,
+        0.7071067811865476
+      ],
+      "parallel_scale": 39.36067471068046,
+      "clip": [
+        0.01,
+        475.9905452088057
+      ]
+    },
+    "lower_225": {
+      "projection": "orthographic",
+      "width": 1400,
+      "height": 938,
+      "focal_point": [
+        42.5,
+        -39.0,
+        5.104
+      ],
+      "position": [
+        -74.49763630220146,
+        -155.99763630220144,
+        -160.35564402416801
+      ],
+      "up": [
+        -0.5000000000000001,
+        -0.4999999999999999,
+        0.7071067811865477
+      ],
+      "parallel_scale": 51.128432690209365,
+      "clip": [
+        0.01,
+        475.9905452088057
+      ]
+    },
+    "lower_270": {
+      "projection": "orthographic",
+      "width": 1400,
+      "height": 938,
+      "focal_point": [
+        42.5,
+        -39.0,
+        5.104
+      ],
+      "position": [
+        42.49999999999997,
+        -204.45964402416803,
+        -160.35564402416801
+      ],
+      "up": [
+        -1.2989340843532398e-16,
+        -0.7071067811865475,
+        0.7071067811865476
+      ],
+      "parallel_scale": 36.63831360311225,
+      "clip": [
+        0.01,
+        475.9905452088057
+      ]
+    },
+    "lower_315": {
+      "projection": "orthographic",
+      "width": 1400,
+      "height": 938,
+      "focal_point": [
+        42.5,
+        -39.0,
+        5.104
+      ],
+      "position": [
+        159.4976363022014,
+        -155.9976363022015,
+        -160.35564402416801
+      ],
+      "up": [
+        0.49999999999999983,
+        -0.5000000000000001,
+        0.7071067811865476
+      ],
+      "parallel_scale": 51.128432690209365,
+      "clip": [
+        0.01,
+        475.9905452088057
+      ]
+    },
+    "detail-J1-top": {
+      "projection": "orthographic",
+      "width": 1400,
+      "height": 938,
+      "focal_point": [
+        10.556000000000001,
+        -8.372999999999998,
+        5.103067690914192
+      ],
+      "position": [
+        10.556000000000001,
+        -8.372999999999998,
+        81.11415520029665
+      ],
+      "up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "parallel_scale": 11.542300110000005,
+      "clip": [
+        0.01,
+        160.02217501876493
+      ]
+    },
+    "detail-J1-bottom": {
+      "projection": "orthographic",
+      "width": 1400,
+      "height": 938,
+      "focal_point": [
+        10.556000000000001,
+        -8.372999999999998,
+        5.103067690914192
+      ],
+      "position": [
+        10.556000000000001,
+        -8.372999999999998,
+        -70.90801981846828
+      ],
+      "up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "parallel_scale": 11.542300110000005,
+      "clip": [
+        0.01,
+        160.02217501876493
+      ]
+    },
+    "detail-J1-upper_045": {
+      "projection": "orthographic",
+      "width": 1400,
+      "height": 938,
+      "focal_point": [
+        10.556000000000001,
+        -8.372999999999998,
+        5.103067690914192
+      ],
+      "position": [
+        48.56154375469124,
+        29.632543754691234,
+        58.85102311416261
+      ],
+      "up": [
+        -0.5000000000000001,
+        -0.4999999999999999,
+        0.7071067811865477
+      ],
+      "parallel_scale": 20.38946042219113,
+      "clip": [
+        0.01,
+        160.02217501876493
+      ]
+    },
+    "detail-J1-upper_135": {
+      "projection": "orthographic",
+      "width": 1400,
+      "height": 938,
+      "focal_point": [
+        10.556000000000001,
+        -8.372999999999998,
+        5.103067690914192
+      ],
+      "position": [
+        -27.44954375469123,
+        29.63254375469124,
+        58.85102311416261
+      ],
+      "up": [
+        0.4999999999999999,
+        -0.5000000000000001,
+        0.7071067811865477
+      ],
+      "parallel_scale": 20.38946042219113,
+      "clip": [
+        0.01,
+        160.02217501876493
+      ]
+    },
+    "detail-J1-upper_225": {
+      "projection": "orthographic",
+      "width": 1400,
+      "height": 938,
+      "focal_point": [
+        10.556000000000001,
+        -8.372999999999998,
+        5.103067690914192
+      ],
+      "position": [
+        -27.449543754691238,
+        -46.37854375469123,
+        58.85102311416261
+      ],
+      "up": [
+        0.5000000000000001,
+        0.4999999999999999,
+        0.7071067811865477
+      ],
+      "parallel_scale": 20.38946042219113,
+      "clip": [
+        0.01,
+        160.02217501876493
+      ]
+    },
+    "detail-J1-upper_315": {
+      "projection": "orthographic",
+      "width": 1400,
+      "height": 938,
+      "focal_point": [
+        10.556000000000001,
+        -8.372999999999998,
+        5.103067690914192
+      ],
+      "position": [
+        48.56154375469123,
+        -46.37854375469124,
+        58.85102311416262
+      ],
+      "up": [
+        -0.49999999999999983,
+        0.5000000000000001,
+        0.7071067811865476
+      ],
+      "parallel_scale": 20.38946042219113,
+      "clip": [
+        0.01,
+        160.02217501876493
+      ]
+    },
+    "detail-J1-lower_045": {
+      "projection": "orthographic",
+      "width": 1400,
+      "height": 938,
+      "focal_point": [
+        10.556000000000001,
+        -8.372999999999998,
+        5.103067690914192
+      ],
+      "position": [
+        48.56154375469124,
+        29.632543754691234,
+        -48.64488773233422
+      ],
+      "up": [
+        0.5000000000000001,
+        0.4999999999999999,
+        0.7071067811865477
+      ],
+      "parallel_scale": 20.38946042219113,
+      "clip": [
+        0.01,
+        160.02217501876493
+      ]
+    }
+  },
+  "view_count": 22,
+  "declared_thickness_mm": 1.6,
+  "rendered_native_step_thickness_mm": 1.5140402060385088,
+  "limitations": [
+    "Native dielectric STEP, not finished copper/mask thickness.",
+    "No clearance/plug-fit check.",
+    "Module connectors require explicit declaration.",
+    "Inspection solids are not independent manufacturer CAD."
+  ]
+}

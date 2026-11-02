@@ -1,0 +1,20 @@
+{
+  "command": [
+    "kicad-cli",
+    "pcb",
+    "drc",
+    "--format",
+    "json",
+    "--severity-all",
+    "--all-track-errors",
+    "--schematic-parity",
+    "--refill-zones",
+    "--save-board",
+    "--output",
+    "/home/mouse9911/gits/circuits-crow-stock-substitutions-20261101/projects/crow-array/order-readiness/power-jack-r10/candidate4/drc.json",
+    "/home/mouse9911/gits/circuits-crow-stock-substitutions-20261101/projects/crow-array/order-readiness/power-jack-r10/candidate4/native/pcb/carrier/carrier.kicad_pcb"
+  ],
+  "returncode": 0,
+  "stdout": "Found 0 violations\nFound 0 unconnected items\nFound 0 schematic parity issues\nSaved DRC Report to /home/mouse9911/gits/circuits-crow-stock-substitutions-20261101/projects/crow-array/order-readiness/power-jack-r10/candidate4/drc.json\nSaved board\n",
+  "stderr": ""
+}

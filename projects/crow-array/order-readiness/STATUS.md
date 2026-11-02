@@ -1,5 +1,142 @@
 # Crow exact-job order readiness
 
+## Publication handoff — r10 quote-only successor
+
+User authorized publishing the verified r10 package and MacBook instructions
+to existing shared branch `codex/crow-jlc-source-review-20261030`; no purchases.
+[MacBook handoff](MACBOOK-R10-HANDOFF.md) specifies the new carrier fabrication
+and CPL, unchanged pod, exact reviewed v2 grouped BOM equivalents, quantity
+settings, numbered-pin/peg preview checks and retained process/stack holds.
+The Python-only `r10_upload_check.py` verifies213 payload files,105 preserved
+r9 files, review/native bindings and136/29 per-board factory reference identities
+without needing KiCad; it explicitly does not rerun engineering acceptance.
+Full native/Gerber replay and eight r10 tests pass on the server. Publication
+includes reviewed source dependencies and final render sets, excluding unrelated
+failed clock experiments and superseded render/authoring scratch directories.
+No JLC draft, vendor message, sourcing commitment, reservation or purchase is
+authorized by publishing or by an integrity PASS. Earlier "local/unpushed"
+entries below describe the engineering-task checkpoint, not the publication.
+
+## Completed — r10 outward power-jack quote derivative, 2026-11-02 UTC
+
+Completed the bounded repair under vNext affected placement/routing/mating
+review, with SOL6.1high author and independent reviewer. Final candidate4
+SHA256`1fc774524ef57efdd3a644de338328837e42ba648d3a4dd6bb78bad44e8852a1`
+places carrier J1 at(188,14.7),180deg: mouthY1.0 faces outward. Independent
+review rejected candidate3's0.0369mm rear-body gap; coordinator explicitly
+authorized a distinct-cause0.5mm outward robustness shift, now giving a
+0.5369mm lower-bound gap under the retained manufacturer/installed-pose caps.
+The named straight PP3 plug has>=0.90mm finished-board clearance; revised
+finite corridor is carried into current instructions, not inherited from the
+historically reversed mouth assumption.
+
+Fresh strict DRC, opens, schematic parity, ERC and routing geometry pass.
+Shared return paths and unchanged D3 output copper were checked; immediate
+D3 input-side copper is geometrically identical and its continuous cooling
+island increased206.408→216.184mm². This preserves the bounded prototype
+thermal basis, not measured thermal performance. Author replay is byte-identical.
+Only J1 placement, local VIN/FUSED routing and the explicit cooling extension
+changed; schematic, other placements, vias, outline and pod are unchanged.
+
+[Independent review](power-jack-r10-review/REVIEW.md) passes **prototype quote
+derivative only**. [r10 package](quote-draft/r10-2c8p-outward-power/README.md)
+build/verify passes213 files with105 r9 files preserved. Fresh carrier Gerber
+and drill regeneration reproduces the packaged fabrication data (only timestamp
+comments ignored). J1 CPL is bodycenter(188,-8.2),180deg; native geometry changed,
+so new carrier Gerbers and CPL must be used together. BOMs and exact installed
+split remain476 SMT/28 factoryTHT/20 HOME for5 fabricated/2 assembled carriers
+and10 fabricated/8 assembled pods. All113 original r9 payload files still verify.
+Eight package regression tests and nine render tests pass, including wrong-CPL
+and changed-drill rejection even when a tampered file's manifest hash is restamped.
+
+[Final renders](render-review-r10/REVIEW.md) include123 PNGs for both boards,
+with outward registration/direction checks passing. Diagnostic solids are not
+physical-fit acceptance. No formal vNext stage/release receipt was issued by
+the quote helper. Historical full-release/production status remains HOLD.
+Next is new-carrier JLC quote/registered placement review and reconciliation of
+existing stackup, hole/assembly/process/retention and first-article thermal
+controls. No browser draft, vendor message, purchase, reservation or manufacturing
+commitment changed. Work is local and has not been committed or pushed.
+
+### Repair checkpoint — shared-copper backtrack
+
+Native J1 moved from (188,2.2),0deg to (188,15.2),180deg about its retained
+body center. Maker mouth now faces -Y, nominal frontY1.5. The first concrete
+repair passed strict native DRC/parity but the author then found its VIN path
+reduced connected D3 FUSED cooling fill206.408→150.608mm². This invalidated the
+initial routing candidate despite DRC0. A bounded causal repair reconnected a
+left copper lobe and extended the same local cooling polygon; the first
+extension193.388mm² was rejected, the second212.588mm² awaits independent
+spreading/thermal judgment. Total copper area is not a guaranteed thermal model.
+No circuit changes, new vias or unrelated placements were introduced. Earlier
+SWIG/pointer implementation attempts are retained but are not separate accepted
+designs. Candidate3 frozen SHA42a51e3b180ccfa1d0aeda85e9131c292ee8e1c32b6db3cb0c3261f22f134a01.
+
+Both final diagnostic render sets pass registration/direction checks; carrier
+has92 views, unchanged pod29, plus overview sheets. Independent review is
+rederiving the real plug service corridor and tight rear-body gap; render solids
+are not the clearance proof. No quote promotion until this review completes.
+
+## Active bounded repair — outward carrier J1, 2026-11-01 23:49 UTC
+
+User authorized native power-jack repair, affected routing/clearance checks,
+regenerated renders and a verified quote successor; no purchases. Parent
+deliverable is an independently reviewed r10 quote derivative, not a new full
+release or silent promotion of historical stage receipts. Reopen J1 placement,
+input-power/return routing, affected mating/assembly/fabrication evidence only.
+The r9 diagnostic establishes a real native orientation conflict, so this is
+first author attempt on the authorized physical correction, not another preview
+or stock-search retry. Preserve r9 and all earlier renders.
+
+Plan: SOL6.1high is sole native author under a new `power-jack-r10/` candidate
+folder; coordinator owns integration/quote/renders and a separate reviewer
+checks exact candidate evidence. Close condition: outward maker-supported pose,
+unchanged circuit/other placement and outline unless explicitly justified,
+complete affected supply/return duties, strict fresh refill/DRC/parity and geometry
+checks, defensible connector/body/cable access clearance, source-bound review.
+Author deadline00:03UTC; parent deadline00:15UTC Nov2 includes review/package.
+Reassess after one unsuccessful attempt; at most two same-cause attempts within
+that deadline. No new stage receipt is claimed through quote-only tools; the
+existing quote workflow has no full current-adapter admission binding. Use its
+actual native checks and independent affected-engineering review, keeping
+production/release and vendor holds explicit. Next advancement requires actual
+corrected native copper and verified access, not another report alone.
+
+## Current update — local multi-angle rendering finds power-jack direction conflict
+
+Added generic `vnext/skills/render-board`: six cardinal and sixteen45-degree
+orbit views, labeled connector close-ups, source hashes and explicit model
+coverage. Skill validation and nine tests pass. Ran on both unchanged r9 boards;
+[final galleries and review](render-review-20261101/REVIEW.md) contain123 PNGs.
+Models are drawing-derived diagnostics; other components are unqualified native
+footprint envelopes, not complete manufacturer CAD or clearance acceptance.
+
+All9 RJ45 native orientations and Pico USB direction check outward. **Carrier
+J1 PJ-102AH faces +Y/inward** from maker terminal geometry, inconsistent with
+older outward negativeY cable-clearance assumptions. Current r9 CPL center and
+THT table agree with the actual inward pose. Do not rotate only the model/CPL;
+placement/mating must resolve the intended access direction and affected routing.
+Both JLC placement holds and other production holds remain. All113 r9 payload
+files still verify unchanged. No board correction, vendor change, purchase or
+push was made by this diagnostic task.
+
+## Current update — RJ45 native geometry checked; JLC placement hold retained
+
+Reviewed remote input4eb497aa and [recorded the orientation diagnosis](R9-RJ45-ORIENTATION-REVIEW-20261101.md).
+All9 RJHSE-5080 native pin/peg constellations and CPL body centers match the
+manufacturer component-side drawing within0.004mm nominal rounding. A physical
+180-degree reversal would misplace the locator-peg row by4.826mm. A JLC
+zero-angle/model registration mismatch remains plausible, not proven.
+
+Merged v2 BOMs preserve136 carrier/29 pod per-reference identities and routes;
+r9 manifest verification passes. The new read-only TinyFish observation conflicts
+with MacBook's inward-mouth finding and contains material factual inconsistencies;
+it cannot close placement acceptance. Next: registered close-up evidence with
+pin1/pin8/both pegs, or authorized JLC review if the preview hides those witnesses.
+No CPL rotation, native/BOM/Gerber edits, browser changes, production approval,
+vendor message, purchase or push. Both placement holds and carrier stackup hold
+remain; USD391.09 remains the earlier incomplete delivered-quote figure.
+
 ## Current update — RJ45 connector orientation hold, 2026-11-01
 
 JLC's angled 3D previews show pod J1 and all eight carrier J101–J108

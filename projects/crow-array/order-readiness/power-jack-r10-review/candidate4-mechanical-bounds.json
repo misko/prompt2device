@@ -1,0 +1,310 @@
+{
+  "scope": "Affected drawing-envelope clearance and straight-accessory approach only; no populated-assembly or vNext acceptance",
+  "board_sha256": "1fc774524ef57efdd3a644de338328837e42ba648d3a4dd6bb78bad44e8852a1",
+  "jack_pose": {
+    "origin": [
+      188,
+      14.7
+    ],
+    "angle": 180,
+    "mouth_nominal_y": 1.0,
+    "direction": "native -Y"
+  },
+  "corrected_jack_local_box": {
+    "xy": [
+      -4.7,
+      -1.3,
+      4.7,
+      14.1
+    ],
+    "z": [
+      0,
+      11.5
+    ]
+  },
+  "jack_pose_bound": [
+    [
+      182.87201690433673,
+      0.17201690433672046,
+      -0.35939984561743776
+    ],
+    [
+      193.12798309566327,
+      16.31800974633385,
+      11.92798309566328
+    ]
+  ],
+  "neighbors": {
+    "F1": {
+      "mpn": "0451001.MRL",
+      "historical_model_identity": "0451001.MRL",
+      "local_body": {
+        "bounds": [
+          -3.2,
+          -1.5,
+          3.2,
+          1.5
+        ],
+        "shape": "box",
+        "z": [
+          0.0,
+          3.0
+        ]
+      },
+      "pose_bound": [
+        [
+          177.81909226132004,
+          3.619092261320041,
+          -0.1616812369634952
+        ],
+        [
+          181.18090773867996,
+          10.380907738679959,
+          3.180907738679959
+        ]
+      ],
+      "jack_separation": {
+        "axis_gaps_mm": [
+          1.6911091656567692,
+          0,
+          0
+        ],
+        "lower_bound_mm": 1.6911091656567692
+      },
+      "basis": "Littelfuse 451 maker body 6.10+/-0.20 x 2.69+/-0.25 mm; 6.40 x 3.00 box along local X with conservative 3.00 mm height. Maker lands 1.96 x 3.15 mm, 2.95 mm inner gap yield +/-2.455 mm along local X; this matches native within 0.20 mm. Legacy retained sheet does not literally print .MRL suffix; part card links current maker sheet.",
+      "plug_exterior_separation": {
+        "axis_gaps_mm": [
+          1.4690922613200428,
+          0.5190922613200408,
+          0
+        ],
+        "lower_bound_mm": 1.5581042481274447
+      }
+    },
+    "D1": {
+      "mpn": "SMBJ15A",
+      "historical_model_identity": "SMBJ15A",
+      "local_body": {
+        "bounds": [
+          -2.795,
+          -1.97,
+          2.795,
+          1.97
+        ],
+        "shape": "box",
+        "z": [
+          0,
+          2.61
+        ]
+      },
+      "pose_bound": [
+        [
+          179.0299213087674,
+          16.854921308767384,
+          -0.15968063527567328
+        ],
+        [
+          184.9700786912326,
+          21.145078691232616,
+          2.7850786912326155
+        ]
+      ],
+      "jack_separation": {
+        "axis_gaps_mm": [
+          0,
+          0.5369115624335343,
+          0
+        ],
+        "lower_bound_mm": 0.5369115624335343
+      },
+      "basis": "LS37 corrected occupied package envelope, native local X/Y/Z (5.59, 3.94, 2.61) mm. Formed leads included. See model-corrections.md for maker dimensions and explicitly unresolved flash/pose scope; not a universal tolerance guarantee.",
+      "plug_exterior_separation": {
+        "axis_gaps_mm": [
+          0,
+          13.754921308767385,
+          0
+        ],
+        "lower_bound_mm": 13.754921308767385
+      }
+    },
+    "D3": {
+      "mpn": "SS34-E3/57T",
+      "historical_model_identity": "SS34-E3/57T",
+      "local_body": {
+        "bounds": [
+          -4.065,
+          -3.11,
+          4.065,
+          3.11
+        ],
+        "shape": "box",
+        "z": [
+          0,
+          2.8
+        ]
+      },
+      "pose_bound": [
+        [
+          186.6881776335362,
+          18.733177633536222,
+          -0.18932891113462955
+        ],
+        [
+          193.3118223664638,
+          27.266822366463778,
+          3.0018223664637778
+        ]
+      ],
+      "jack_separation": {
+        "axis_gaps_mm": [
+          0,
+          2.4151678872023723,
+          0
+        ],
+        "lower_bound_mm": 2.4151678872023723
+      },
+      "basis": "LS37 corrected occupied package envelope, native local X/Y/Z (8.13, 6.22, 2.8) mm. Formed leads included. See model-corrections.md for maker dimensions and explicitly unresolved flash/pose scope; not a universal tolerance guarantee.",
+      "plug_exterior_separation": {
+        "axis_gaps_mm": [
+          0,
+          15.633177633536222,
+          0
+        ],
+        "lower_bound_mm": 15.633177633536222
+      }
+    },
+    "C1": {
+      "mpn": "CL31B106KBHNNNE",
+      "historical_model_identity": "C3216X7R1V106K160AC",
+      "local_body": {
+        "bounds": [
+          -1.8,
+          -0.95,
+          1.8,
+          0.95
+        ],
+        "shape": "box",
+        "z": [
+          0.0,
+          2.05
+        ]
+      },
+      "pose_bound": [
+        [
+          180.04958206827098,
+          21.899582068271,
+          -0.13552246654300043
+        ],
+        [
+          183.95041793172902,
+          24.100417931729,
+          2.200417931729001
+        ]
+      ],
+      "jack_separation": {
+        "axis_gaps_mm": [
+          0,
+          5.5815723219371485,
+          0
+        ],
+        "lower_bound_mm": 5.5815723219371485
+      },
+      "basis": "Maker 3216/1206 ceramic nominal 3.2 x 1.6 mm; shared conservative 3.60 x 1.90 x 2.05 mm envelope covers TDK catalog C3216 +0.40/+0.30, exact TDK C3216X7R1V106K160AC +/-0.2 and Murata GRM31M +/-0.2. End-electrode nominal touchdown +/-1.25 from body/termination span differs from native +/-1.475 lands; 0.38 mm permits overlapping solder contact, not literal recommended-land parity.",
+      "current_identity_reconciliation": "Current Samsung CL31B106KBHNNNE max3.40x1.80x1.80mm is deliberately screened inside the retained broader3.60x1.90x2.05mm occupied envelope. Historical TDK identity is not the installed part. See current capacitor-review.md exact maker dimensions and adoption.",
+      "plug_exterior_separation": {
+        "axis_gaps_mm": [
+          0,
+          18.799582068270997,
+          0
+        ],
+        "lower_bound_mm": 18.799582068270997
+      }
+    }
+  },
+  "plug": {
+    "mpn": "PP3-002A",
+    "center_positive_required": true,
+    "diameter_max_mm": 8.5,
+    "mouth_dimensional_range_y": [
+      0.6,
+      1.4
+    ],
+    "exterior_nominal_bounds": [
+      [
+        183.75,
+        -35.4,
+        2.05
+      ],
+      [
+        192.25,
+        2.0,
+        10.95
+      ]
+    ],
+    "rotation_radius_mm": 51.45847840735285,
+    "required_pose_expansion_mm": 0.9981084770281465,
+    "adopted_pose_expansion_mm": 1.1,
+    "exterior_reserved_bounds": [
+      [
+        182.65,
+        -36.5,
+        0.9499999999999997
+      ],
+      [
+        193.35,
+        3.1,
+        12.149999999999999
+      ]
+    ],
+    "finished_board_z_max_mm": 0.05,
+    "board_gap_lower_bound_mm": 0.8999999999999997,
+    "own_interface": "Only compatible selected nose/barrel engages named jack receptacle; no whole-reference collision waiver or private-cavity simulation",
+    "nose_nonowner_bound": "Barrel<=diameter5.55, axis6.50+/-.20, forward engagement<=9.8mm beyond mouth. All four nearby nonowners are disjoint in X or Y even before their broad exterior corridor bound."
+  },
+  "underside": {
+    "board_thickness_mm": 1.6,
+    "lead_projection_max_below_seating_mm": 3.7,
+    "native_terminal_centers": [
+      [
+        188,
+        14.7
+      ],
+      [
+        188,
+        8.7
+      ],
+      [
+        183.3,
+        11.7
+      ]
+    ],
+    "nominal_xy_hole_column_radius_mm": 0.8,
+    "limit": "Retain prescribed-hole occupancy and finite installed-pose projection controls; no standoff/enclosure/support/floor hardware in these columns. These are interface envelopes, not invented private tab profiles."
+  },
+  "limitations": [
+    "Retain actual body/pose and first-article dimensional inspection holds; candidate3 narrow0.0369mm gap was rejected in favor of candidate4 outward0.5mm robustness shift.",
+    "Unchanged distant board bodies retain prior source and substitution reviews; no new full populated 3D proof, unknown module height/enclosure or arbitrary cable approval.",
+    "Only straight PP3-002A; no bend, right-angle boot or cable-assembly wiring test performed.",
+    "Native holes are1.6mm drills, not guaranteed finished holes. Finished opening1.60..1.73, actual annulus>=.30, seating, solder fill>=75%, process agreement and representative29.4N mating/retention qualification remain unperformed."
+  ],
+  "sources": {
+    "/home/mouse9911/gits/crow-first-run-5c10p-20261022/project/03_src/recovery/first-run-physical/assembly.json": "5efbae1f7491bc839ee024221d976f5722bce0ac169f8e7d78e73dc654577911",
+    "/home/mouse9911/gits/crow-first-run-5c10p-20261022/project/03_src/recovery/ls43-mating/controls.md": "275e474cd6d9299e2b9791ba002f12e9ab1acba53e0eb7b048b4c6257dc529c4",
+    "/home/mouse9911/gits/crow-first-run-5c10p-20261022/project/02_parts/P028/manufacturer.pdf": "56a30d312d4f2bfed8b2845cfb376438b24763cab6313966d9e5183ae9bdde59",
+    "/home/mouse9911/gits/crow-first-run-5c10p-20261022/project/02_parts/mechanical-ls33/pp3-002a.pdf": "5bba86239296510fb2898520a9d144573844c6cf9d4751a4087f1f14cadd589d",
+    "/home/mouse9911/gits/crow-first-run-5c10p-20261022/project/02_parts/P032/manufacturer.pdf": "4e7ea0ef4a74de638b88fb027adc9750d9a4c71a0a162c125032205a939e6b71",
+    "/home/mouse9911/gits/crow-first-run-5c10p-20261022/project/02_parts/P001/manufacturer.pdf": "bdfc5532113e5df5ca3a469553b64c8903751c5d3ea2a3a382262f6093b9fd14",
+    "/home/mouse9911/gits/circuits-crow-stock-substitutions-20261101/projects/crow-array/order-readiness/substitutions-20261101/capacitor-review.md": "8281cf1c895a3ecfadad08b462eedced450c9fdbdb96171a852d9d67f334707f",
+    "/tmp/crow-cap-review-OSRijwkC/CL31B106KBHNNN-spec.pdf": "a003e571e517a78df3c96fd2ff5497336465a62589fc5f6b73db14ffc8bf5032"
+  },
+  "retained_sources": {
+    "source-evidence/0-first-run-physical-assembly.json": "5efbae1f7491bc839ee024221d976f5722bce0ac169f8e7d78e73dc654577911",
+    "source-evidence/1-ls43-mating-controls.md": "275e474cd6d9299e2b9791ba002f12e9ab1acba53e0eb7b048b4c6257dc529c4",
+    "source-evidence/2-P028-manufacturer.pdf": "56a30d312d4f2bfed8b2845cfb376438b24763cab6313966d9e5183ae9bdde59",
+    "source-evidence/3-mechanical-ls33-pp3-002a.pdf": "5bba86239296510fb2898520a9d144573844c6cf9d4751a4087f1f14cadd589d",
+    "source-evidence/4-P032-manufacturer.pdf": "4e7ea0ef4a74de638b88fb027adc9750d9a4c71a0a162c125032205a939e6b71",
+    "source-evidence/5-P001-manufacturer.pdf": "bdfc5532113e5df5ca3a469553b64c8903751c5d3ea2a3a382262f6093b9fd14",
+    "source-evidence/6-substitutions-20261101-capacitor-review.md": "8281cf1c895a3ecfadad08b462eedced450c9fdbdb96171a852d9d67f334707f",
+    "source-evidence/7-crow-cap-review-OSRijwkC-CL31B106KBHNNN-spec.pdf": "a003e571e517a78df3c96fd2ff5497336465a62589fc5f6b73db14ffc8bf5032"
+  }
+}

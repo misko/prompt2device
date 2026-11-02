@@ -1,0 +1,116 @@
+{
+  "source_sha256": "ddc5f5b1c3cba999db77b1e2a0a8dd24f004579ec825ccec991169a0af3aa099",
+  "source_resources": {
+    "carrier.kicad_prl": "405cafbacb54803b3f73763dc74689efbd89dc27687e7baff0108179d2fca4fe",
+    "carrier.kicad_pro": "2f23ae4cac9d2a53237ce2fa53170226739aa8bc2e4164fbb0e2842c464f5d1b",
+    "fp-lib-table": "1f1d1683b7ff3242c5354c05df663ba41d8c30cc35b1aff9d0f92bf29d0407b4",
+    "carrier.kicad_pcb": "ddc5f5b1c3cba999db77b1e2a0a8dd24f004579ec825ccec991169a0af3aa099",
+    "carrier.kicad_sch": "0d84b8ab9e751dbbb0f31289266346ebae56581c38052ef4007fb03790566955",
+    "CrowPhysical.pretty/CPE-203.kicad_mod": "0d0ccea35c121d6f84891112ac614dd4333219e102e928f762a81e5138e4e54b",
+    "CrowPhysical.pretty/CMA-4544PF-W.kicad_mod": "d6c8d3588b0caaf0acf8fd3e9eac9b5e3ef653a35984a4d6ed60b06be0a08a70",
+    "CrowPhysical.pretty/CTS_CB3LV_7050.kicad_mod": "b915317b1e3b4daf6844fbd675b3d7ba006bb78363df4b23afcd11556ad43cf4",
+    "CrowPhysical.pretty/TI_LMK6C_DLF0004A.kicad_mod": "e2dbe0e05eb5a3cd6f20e715949dc2b784ecc6ddea5537a40875198fcc84a275",
+    "CrowPhysical.pretty/SP0504BAHTG.kicad_mod": "078b620aef0afa61c868bf68737c470b0f12a3d70e11dac4ed1a1f8b9e178163",
+    "CrowPhysical.pretty/RJHSE-5080.kicad_mod": "e1359d7f87f2ec38d779bc3a41d30526faa9f2d7fcff78f20c05f955e15a6498",
+    "libraries/Connector_BarrelJack.pretty/BarrelJack_CUI_PJ-102AH_Horizontal.kicad_mod": "ccf2d7defdee45e747e29ab03074464da2c4e00be0e23dc4a827f9de60378155",
+    "libraries/Package_SO.pretty/TSSOP-30_4.4x7.8mm_P0.5mm.kicad_mod": "48e0e90dc5f8ccbeb9aff324ad127ba28d30d6e5eb3c5a5e48a19138a6c0d829",
+    "libraries/Package_SO.pretty/SOIC-8_3.9x4.9mm_P1.27mm.kicad_mod": "8a1cfd595dc450600792d78537dd0598076ee0b8f1fe2b68c4703bdac4542440",
+    "libraries/Fuse.pretty/Fuse_Littelfuse-NANO2-451_453.kicad_mod": "bcf7b66955eb6855685be58df07c368525f3a5f675ed3304f47e9c53aed4f46d",
+    "libraries/Fuse.pretty/Fuse_1206_3216Metric.kicad_mod": "0c8572c5179325975421ca5d4d965fe98e327536847f509bf2011422402b218a",
+    "libraries/Capacitor_SMD.pretty/C_1210_3225Metric.kicad_mod": "a818f14229427b805608e7f1d04b19192b5c62d7d66699d67b0371698ced1a9d",
+    "libraries/Capacitor_SMD.pretty/C_1206_3216Metric.kicad_mod": "6f1337e14dc56e4b86c7b4dce590745a6c48ee2f44fe389e11d99a4530ec8147",
+    "libraries/Capacitor_SMD.pretty/C_0805_2012Metric.kicad_mod": "61d879c8d8ab7f9b1ebe569d3b7144fc6aeb932db613761d53f5691642140fd1",
+    "libraries/Resistor_SMD.pretty/R_0603_1608Metric.kicad_mod": "be2ff2455f5f0039881d7be0024a6fe27337d4e26a58ca3fd6804accdd553ef3",
+    "libraries/Diode_SMD.pretty/D_SMB.kicad_mod": "183d75738af38196d423e69f67b0fb62067b1f1a8a9068768a885de9e2afd16e",
+    "libraries/Diode_SMD.pretty/D_SMC.kicad_mod": "1735a71e2531d9c89a4078a90f0be1a4714b8a4898fbca8b8c62437dd20ed240",
+    "libraries/Diode_SMD.pretty/D_SOD-123.kicad_mod": "e289c5d99ede408dcca0014dd9f24aa954d558d3a3816635804c0d99c6571627",
+    "libraries/Module.pretty/RaspberryPi_Pico_Common_Unspecified.kicad_mod": "1929b46b777757b660888aca1151c99552e6fe5e7f00f10537e12a4eb651475b",
+    "libraries/Converter_DCDC.pretty/Converter_DCDC_TRACO_TSR1_RetainedLands.kicad_mod": "a01b836f89d8583605e1c00369d0bb11a63ebd1263f4af1be15295f99081f99c",
+    "libraries/Converter_DCDC.pretty/Converter_DCDC_RECOM_R-78E-0.5_THT.kicad_mod": "7d53d6f48868f8c5dd17952506adfaf1181b5a1952aa161c60e054140d679d83",
+    "libraries/Package_TO_SOT_SMD.pretty/SOT-23.kicad_mod": "27d35c7c1a03508b1409dc61e7da85891f9c6a8ac5bd63638621bb8314a46d1a",
+    "libraries/Package_TO_SOT_SMD.pretty/SOT-23-5.kicad_mod": "71186eafd244071851f9e9f43cdbff8aec24001f730355364bac1d195936fe48"
+  },
+  "jack": {
+    "anchor_mm": [
+      188,
+      14.7
+    ],
+    "angle_deg": 180,
+    "body_center_mm": [
+      188,
+      8.2
+    ],
+    "mouth_y_mm": 1.0,
+    "mouth_direction_native": "-Y"
+  },
+  "removed_segment_nodes": [
+    "\t(segment\n\t\t(start 179.5 4.545)\n\t\t(end 179.5 6.0767)\n\t\t(width 0.8)\n\t\t(layer \"F.Cu\")\n\t\t(net \"/FUSED12\")\n\t\t(uuid \"4c0ffafb-5755-4c31-801b-b0978b301d14\")\n\t)\n",
+    "\t(segment\n\t\t(start 190 16.5767)\n\t\t(end 190 19.6)\n\t\t(width 0.8)\n\t\t(layer \"F.Cu\")\n\t\t(net \"/FUSED12\")\n\t\t(uuid \"6685e966-5220-4183-be1b-ab5673b43fac\")\n\t)\n",
+    "\t(segment\n\t\t(start 179.5 6.0767)\n\t\t(end 190 16.5767)\n\t\t(width 0.8)\n\t\t(layer \"F.Cu\")\n\t\t(net \"/FUSED12\")\n\t\t(uuid \"71e73d6b-c135-4278-bfbb-66d8e78f4aff\")\n\t)\n",
+    "\t(segment\n\t\t(start 177.3082 3.368)\n\t\t(end 177.3082 5.7315)\n\t\t(width 0.8)\n\t\t(layer \"F.Cu\")\n\t\t(net \"/VIN12\")\n\t\t(uuid \"29bf7b2d-f838-4651-8cfa-67fe244d8be6\")\n\t)\n",
+    "\t(segment\n\t\t(start 179.5 9.455)\n\t\t(end 179.5 7.9233)\n\t\t(width 0.8)\n\t\t(layer \"F.Cu\")\n\t\t(net \"/VIN12\")\n\t\t(uuid \"8bb8780e-4a88-4281-8ee4-6494d7c98aef\")\n\t)\n",
+    "\t(segment\n\t\t(start 178.4762 2.2)\n\t\t(end 177.3082 3.368)\n\t\t(width 0.8)\n\t\t(layer \"F.Cu\")\n\t\t(net \"/VIN12\")\n\t\t(uuid \"a9ed6c7e-635c-4e17-ac2e-3606ba933263\")\n\t)\n",
+    "\t(segment\n\t\t(start 177.3082 5.7315)\n\t\t(end 179.5 7.9233)\n\t\t(width 0.8)\n\t\t(layer \"F.Cu\")\n\t\t(net \"/VIN12\")\n\t\t(uuid \"e9bf8ab2-408c-423c-b0bc-d81510f95125\")\n\t)\n",
+    "\t(segment\n\t\t(start 188 2.2)\n\t\t(end 178.4762 2.2)\n\t\t(width 0.8)\n\t\t(layer \"F.Cu\")\n\t\t(net \"/VIN12\")\n\t\t(uuid \"fdc81a87-24ef-491e-bac6-9d59292ded5e\")\n\t)\n"
+  ],
+  "added_segment_nodes": [
+    "\t(segment\n\t\t(start 188 14.7)\n\t\t(end 182.5 14.7)\n\t\t(width 0.8)\n\t\t(layer \"F.Cu\")\n\t\t(net \"/VIN12\")\n\t\t(uuid \"6131c984-7826-568d-82e4-11b4bb7c0e18\")\n\t)\n",
+    "\t(segment\n\t\t(start 182.5 14.7)\n\t\t(end 179.5 11.7)\n\t\t(width 0.8)\n\t\t(layer \"F.Cu\")\n\t\t(net \"/VIN12\")\n\t\t(uuid \"d16bd0dc-47fb-5aa5-90ed-45444b4766c6\")\n\t)\n",
+    "\t(segment\n\t\t(start 179.5 11.7)\n\t\t(end 179.5 9.455)\n\t\t(width 0.8)\n\t\t(layer \"F.Cu\")\n\t\t(net \"/VIN12\")\n\t\t(uuid \"e130a176-8d6d-55c7-9c17-41abd873eabc\")\n\t)\n",
+    "\t(segment\n\t\t(start 179.5 4.545)\n\t\t(end 179.5 2.5)\n\t\t(width 0.8)\n\t\t(layer \"F.Cu\")\n\t\t(net \"/FUSED12\")\n\t\t(uuid \"795ce68f-f253-5418-ac06-68ae4a8efba8\")\n\t)\n",
+    "\t(segment\n\t\t(start 179.5 2.5)\n\t\t(end 192.5 2.5)\n\t\t(width 0.8)\n\t\t(layer \"F.Cu\")\n\t\t(net \"/FUSED12\")\n\t\t(uuid \"70cb7b5c-8a3c-5c9e-85ac-57907996d3b2\")\n\t)\n",
+    "\t(segment\n\t\t(start 192.5 2.5)\n\t\t(end 194.5 4.5)\n\t\t(width 0.8)\n\t\t(layer \"F.Cu\")\n\t\t(net \"/FUSED12\")\n\t\t(uuid \"f2c33287-fed8-5c10-a054-5f8e7820e8b9\")\n\t)\n",
+    "\t(segment\n\t\t(start 194.5 4.5)\n\t\t(end 194.5 15.1)\n\t\t(width 0.8)\n\t\t(layer \"F.Cu\")\n\t\t(net \"/FUSED12\")\n\t\t(uuid \"c425026a-5549-534f-b9d1-0f06be7fb6d1\")\n\t)\n",
+    "\t(segment\n\t\t(start 194.5 15.1)\n\t\t(end 190 19.6)\n\t\t(width 0.8)\n\t\t(layer \"F.Cu\")\n\t\t(net \"/FUSED12\")\n\t\t(uuid \"08432f65-ae0f-588c-887b-69d9d724d4f9\")\n\t)\n",
+    "\t(segment\n\t\t(start 179.5 4.545)\n\t\t(end 177.3 6.745)\n\t\t(width 0.8)\n\t\t(layer \"F.Cu\")\n\t\t(net \"/FUSED12\")\n\t\t(uuid \"97a07b75-bcc1-5986-b066-2da09c515e14\")\n\t)\n",
+    "\t(segment\n\t\t(start 177.3 6.745)\n\t\t(end 177.3 11.2)\n\t\t(width 0.8)\n\t\t(layer \"F.Cu\")\n\t\t(net \"/FUSED12\")\n\t\t(uuid \"a8dabcd0-0cd6-5d49-9d25-5a6696603699\")\n\t)\n",
+    "\t(segment\n\t\t(start 177.3 11.2)\n\t\t(end 178.5 12.4)\n\t\t(width 0.8)\n\t\t(layer \"F.Cu\")\n\t\t(net \"/FUSED12\")\n\t\t(uuid \"f4e65d06-5317-56b0-920d-c034b376def5\")\n\t)\n"
+  ],
+  "paths_mm": {
+    "/VIN12": [
+      [
+        188,
+        14.7
+      ],
+      [
+        182.5,
+        14.7
+      ],
+      [
+        179.5,
+        11.7
+      ],
+      [
+        179.5,
+        9.455
+      ]
+    ],
+    "/FUSED12": [
+      [
+        179.5,
+        4.545
+      ],
+      [
+        179.5,
+        2.5
+      ],
+      [
+        192.5,
+        2.5
+      ],
+      [
+        194.5,
+        4.5
+      ],
+      [
+        194.5,
+        15.1
+      ],
+      [
+        190,
+        19.6
+      ]
+    ]
+  },
+  "preserve_cooling_repair": true
+}

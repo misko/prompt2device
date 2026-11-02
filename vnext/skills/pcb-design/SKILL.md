@@ -86,6 +86,10 @@ drawn under the exploration contract; they may not receive sourcing acceptance.
 
 ## Load detail only when needed
 
+For local multi-angle PNGs and connector-direction diagnostics, use
+[render-board](../render-board/SKILL.md). Its views and model coverage support
+inspection; they do not replace registered mechanical or vendor acceptance.
+
 Use [power](procedures/commission/power-design.md),
 [channel](procedures/commission/channel-design.md) or
 [interface](procedures/commission/integration-design.md) guidance for a named

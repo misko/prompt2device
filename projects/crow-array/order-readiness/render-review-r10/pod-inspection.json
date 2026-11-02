@@ -1,0 +1,331 @@
+{
+  "version": 1,
+  "model_notes": [
+    "Drawing-derived connector diagnostics, not production-approved models.",
+    "All other component bodies are native-footprint XY envelopes with illustrative1mm heights; not collision evidence.",
+    "Carrier J1 outward direction is an independent edge-access requirement from prior mating review; do not change it to hide disagreement."
+  ],
+  "label": "Crow r10 pod | native X right / Y down",
+  "connectors": {
+    "J1": {
+      "mpn": "RJHSE-5080",
+      "source": "Amphenol P-RJHSE-X080 RevA May22/2019, component-side PCB pattern, primary inch dimensions; retained rjhsex080.pdf SHA256 e96d3f6cde115981be470e0edd3159dfda3ebe1a453db0c45d525e629668a756",
+      "limitations": "Nominal housing and contact/peg centers. Cavity, latch, peg diameter/projection and circular contact profiles illustrative; no fit or plating acceptance.",
+      "expected_pads": {
+        "1": [
+          0.0,
+          0
+        ],
+        "2": [
+          1.016,
+          1.778
+        ],
+        "3": [
+          2.032,
+          0
+        ],
+        "4": [
+          3.0479999999999996,
+          1.778
+        ],
+        "5": [
+          4.064,
+          0
+        ],
+        "6": [
+          5.08,
+          1.778
+        ],
+        "7": [
+          6.095999999999999,
+          0
+        ],
+        "8": [
+          7.112,
+          1.778
+        ]
+      },
+      "expected_pegs": [
+        [
+          -2.794,
+          -2.54
+        ],
+        [
+          9.906,
+          -2.54
+        ]
+      ],
+      "tolerance_mm": 0.006,
+      "mouth_direction": [
+        0,
+        -1
+      ],
+      "intended_direction": [
+        0,
+        -1
+      ],
+      "solids": [
+        {
+          "kind": "box",
+          "bounds": [
+            -4.318,
+            -7.62,
+            0,
+            11.43,
+            7.366,
+            13.208
+          ],
+          "color": [
+            0.12,
+            0.13,
+            0.15
+          ],
+          "cuts": [
+            {
+              "kind": "box",
+              "bounds": [
+                -2.4,
+                -7.7,
+                2.4,
+                9.5,
+                1.0,
+                9.5
+              ],
+              "color": [
+                0.12,
+                0.13,
+                0.15
+              ]
+            },
+            {
+              "kind": "box",
+              "bounds": [
+                1.5,
+                -7.7,
+                9.4,
+                5.6,
+                -1.0,
+                11.4
+              ],
+              "color": [
+                0.12,
+                0.13,
+                0.15
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "cylinder",
+          "base": [
+            -2.794,
+            -2.54,
+            -3
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "radius": 1.5,
+          "length": 3,
+          "color": [
+            0.12,
+            0.13,
+            0.15
+          ],
+          "tag": "illustrative peg at drawing-derived center"
+        },
+        {
+          "kind": "cylinder",
+          "base": [
+            9.906,
+            -2.54,
+            -3
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "radius": 1.5,
+          "length": 3,
+          "color": [
+            0.12,
+            0.13,
+            0.15
+          ],
+          "tag": "illustrative peg at drawing-derived center"
+        },
+        {
+          "kind": "cylinder",
+          "base": [
+            0.0,
+            0,
+            -3
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "radius": 0.2,
+          "length": 3.2,
+          "color": [
+            0.86,
+            0.64,
+            0.17
+          ],
+          "tag": "pin1"
+        },
+        {
+          "kind": "cylinder",
+          "base": [
+            1.016,
+            1.778,
+            -3
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "radius": 0.2,
+          "length": 3.2,
+          "color": [
+            0.86,
+            0.64,
+            0.17
+          ],
+          "tag": "pin2"
+        },
+        {
+          "kind": "cylinder",
+          "base": [
+            2.032,
+            0,
+            -3
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "radius": 0.2,
+          "length": 3.2,
+          "color": [
+            0.86,
+            0.64,
+            0.17
+          ],
+          "tag": "pin3"
+        },
+        {
+          "kind": "cylinder",
+          "base": [
+            3.0479999999999996,
+            1.778,
+            -3
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "radius": 0.2,
+          "length": 3.2,
+          "color": [
+            0.86,
+            0.64,
+            0.17
+          ],
+          "tag": "pin4"
+        },
+        {
+          "kind": "cylinder",
+          "base": [
+            4.064,
+            0,
+            -3
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "radius": 0.2,
+          "length": 3.2,
+          "color": [
+            0.86,
+            0.64,
+            0.17
+          ],
+          "tag": "pin5"
+        },
+        {
+          "kind": "cylinder",
+          "base": [
+            5.08,
+            1.778,
+            -3
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "radius": 0.2,
+          "length": 3.2,
+          "color": [
+            0.86,
+            0.64,
+            0.17
+          ],
+          "tag": "pin6"
+        },
+        {
+          "kind": "cylinder",
+          "base": [
+            6.095999999999999,
+            0,
+            -3
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "radius": 0.2,
+          "length": 3.2,
+          "color": [
+            0.86,
+            0.64,
+            0.17
+          ],
+          "tag": "pin7"
+        },
+        {
+          "kind": "cylinder",
+          "base": [
+            7.112,
+            1.778,
+            -3
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "radius": 0.2,
+          "length": 3.2,
+          "color": [
+            0.86,
+            0.64,
+            0.17
+          ],
+          "tag": "pin8"
+        }
+      ]
+    }
+  }
+}

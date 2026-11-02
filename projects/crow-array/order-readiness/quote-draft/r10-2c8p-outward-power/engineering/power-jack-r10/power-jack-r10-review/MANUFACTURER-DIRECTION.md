@@ -1,0 +1,13 @@
+# Independent manufacturer direction and service derivation
+
+The retained 2024-09-12 Same Sky PJ-102AH manufacturer PDF page 2 was read visually alongside the original CUI Rev A drawing hosted by Adafruit. The images retained here are rasterizations of those exact local PDFs, not generated connector models.
+
+The manufacturer's PCB top view shows pin 1 behind pin 3 by 3 mm and pin 2 forward of pin 3 by 3 mm. The mouth-to-pin-3 dimension is 10.70 mm. Mapping the numbered pattern to the actual native library pins 1=(0,0), 2=(0,6), 3=(4.7,3), the mouth is therefore at native local Y=+13.70 mm. The nominal body depth 14.40 gives rear local Y=-0.70; width 9.00 gives X=-4.50..+4.50. The rounded body face and front view place the connector axis nominal Z=6.50 above its support/seating datum.
+
+This independently agrees with the later THT placement review, but conflicts with the older `first-run-physical/assembly.json` P028 basis stating mouth local -Y and body Y=-1.2..13.6. The older LS43 outward corridor cannot simply be inherited: it was paired with the wrong direction. Its remaining seating, mounting, process and physical qualification controls remain relevant and must not be silently removed.
+
+At native angle 0 and origin (188,2.2), the actual mouth is nominal Y=15.9 and points inward (+Y). At native angle 180, the actual mouth points -Y, but retaining origin Y=2.2 would put the mouth at -11.5 and pins 2/3 outside the north board edge. Thus a correct repair requires translation inward as well as rotation. For example, origin Y=14.7 places the nominal mouth at Y=1.0, with native pin 2 at Y=8.7 and pin 3 at Y=11.7. This is a geometric witness, not a required final coordinate or hardware measurement.
+
+The selected straight Same Sky PP3-002A drawing page 2 gives barrel diameter 5.5 +/-0.05, bore 2.1 +/-0.05, exposed nose 9.5 +/-0.3 and outer cover 8.2 mm with the applicable +0.3 maximum. The exact jack drawing specifies a 5.5 mating plug, 2.0 center pin and 9.5 insertion depth. This supports exact standard-interface compatibility, not arbitrary same-size plugs or private contact-stop reconstruction. Cover maximum diameter 8.5 around nominal axis Z6.5 leaves nominal cover-floor Z2.25; a conservative finite pose/service expansion can establish a positive board gap if explicitly recomputed on the actual new pose and every neighbor.
+
+Accept only a center-positive wired straight PP3-002A with retained limits; no right-angle boot, arbitrary adapter, cable-bend, enclosure or unsupported underside-hardware fit is claimed. Board thickness, lead protrusion columns, actual support/seating, neighboring bodies, installed pose and the full finite insertion/withdrawal approach remain independent review obligations.
