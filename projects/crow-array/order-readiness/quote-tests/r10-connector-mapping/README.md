@@ -1,5 +1,11 @@
 # Connector mapping measurements and diagnostic CPLs
 
+**Update, 2 November:** the [captured-J1 review](LOADED-J1-REVIEW.md) now checks
+the actual loaded footprint and public viewer transform. It supports pod test
+C numerically and provides a bounded next MacBook procedure. Follow that
+handoff instead of the historical screenshot-first sequence below. Live C,
+cached-model byte equality, outward mouth view and carrier checks remain open.
+
 The original measurement tools support a 180-degree catalog-to-native local
 rotation for both connector types. Replaying the generated CPLs against the
 retained catalog footprints aligns all ten native connector instances: maximum

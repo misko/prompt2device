@@ -1,5 +1,23 @@
 # Crow exact-job order readiness
 
+## Current next step: captured J1 geometry supports test C
+
+The [backend numerical review](quote-tests/r10-connector-mapping/LOADED-J1-REVIEW.md)
+of MacBook commit `9cec4096` establishes the captured pod footprint's raw origin
+and active model UUID. Test C (10.556, −9.390 mm; 180°) aligns all eight captured
+pin centres within 0.014 mm and both peg centres within 0.004 mm. A fails;
+rotation-only B retains a 1.017 mm error. A fresh public model with the same
+UUID/length also registers nominal tail-tip/peg-bottom profiles within 0.022 mm.
+The cached browser asset's hash is still missing: do not claim byte equality
+or saved-C verification. Four new regression checks and the ten existing
+mapping tests pass. Native boards/r10 and JLC drafts remain unchanged.
+
+Follow the new bounded MacBook C handoff: match the cached model, confirm the
+saved/effective C pose and outward mouth, then restore A and retain HOLD.
+This supersedes the older screenshot-first/origin-unknown recommendations
+below. Carrier RJ instances and power J1 remain separate pending checks.
+No purchases, reservations, substitutions, vendor messages or approvals.
+
 ## Current next step after original skill comparison
 
 The [legacy-tool connector mapping experiment](quote-tests/r10-connector-mapping/README.md)
