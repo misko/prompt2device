@@ -1,0 +1,28 @@
+{
+  "run_id": "95ac5ef5-6f17-49e7-b681-5d3d39a50374",
+  "run_url": "https://agent.tinyfish.ai/runs/95ac5ef5-6f17-49e7-b681-5d3d39a50374",
+  "requested": "Actual JLC placement rows and physical pin/peg captures, followed by reversible quote-only connector rotation trials. Native boards unchanged; no purchases.",
+  "result": "NOT_COMPLETED_BROWSER_EVIDENCE_UNAVAILABLE",
+  "duration_seconds": 379,
+  "steps": 30,
+  "reported_observation": "Selected pod J1 and identified Amphenol RJHSE-5080 / C599441 in the matched component table.",
+  "not_obtained": [
+    "Actual saved X/Y/absolute angle/side placement record",
+    "Inspectable close-up screenshots or screenshot asset handles",
+    "Read-only viewer model transform or placement export",
+    "Before/after rotation trial and pin/peg alignment comparison"
+  ],
+  "remote_changes": "No rotation trial was initiated according to the browser report; no corrections retained. No independent before/after remote state export available.",
+  "carrier": "Not tested in this focused pass; conditional on successful pod evidence.",
+  "local_integrity": "All 213 r10 package files pass unchanged; no native PCB, BOM, CPL or Gerber changes.",
+  "quality_cautions": [
+    "The report's assertion that JLC cannot export or expose placement data is broader than the evidence. The established limit is this browser attempt's failure to retrieve it.",
+    "A matched-part table is not an actual placement table. Part identity is not pose verification.",
+    "Generic service text mentioning SMT does not establish through-hole assembly eligibility.",
+    "No outward-mouth or pin/peg acceptance is supported by this run."
+  ],
+  "next_execution_requires_different_method": true,
+  "recommended_method": "Directly controlled signed-in browser with inspectable canvas screenshots and read-only access to the page's already-loaded placement/model data; MacBook agent is the established available handoff route.",
+  "fallback": "Explicitly authorized JLC production-pose verification using manufacturer drawings and exact native pin/peg positions.",
+  "production_ready": false
+}

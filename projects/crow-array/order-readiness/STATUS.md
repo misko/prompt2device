@@ -1,6 +1,62 @@
 # Crow exact-job order readiness
 
-## Current authorization — quote-only 7628A selection and preview evidence
+## MacBook handoff for connector rotation tests
+
+The user authorized publishing the latest findings and a direct-browser handoff
+to the existing shared branch `codex/crow-jlc-source-review-20261030`. Follow
+[MacBook connector rotation handoff](MACBOOK-R10-CONNECTOR-ROTATION-HANDOFF.md):
+capture actual saved placement data and inspectable pin/peg views, test pod J1
+first, then carrier J101 and power J1, and retain only verified quote-only edits.
+The 180° conversions are test candidates, not accepted JLC corrections. Native
+boards, Gerbers, BOMs and the r10 CPL remain unchanged. No purchases, vendor
+messages or production approval. The handoff supersedes older no-trial wording
+only for these authorized reversible preview tests.
+
+The published diagnostic evidence includes local catalog-fit renders, manufacturer
+references and both unsuccessful browser reports with coordinator assessments.
+These do not establish JLC alignment. `verify_evidence.py` checks retained bytes
+and their native subjects without KiCad; `r10_upload_check.py` checks the unchanged
+213-file quote package. Earlier local/unpushed notes describe those checkpoints.
+
+## Current checkpoint — connector preview verification incomplete
+
+The user requested a focused follow-up to obtain actual placement rows and
+close-up pin/peg views before testing corrections. The [second TinyFish pass](https://agent.tinyfish.ai/runs/95ac5ef5-6f17-49e7-b681-5d3d39a50374)
+ended after379seconds/30steps. It selected podJ1/C599441 but returned neither
+actual saved XY/absolute-angle data nor inspectable close-up captures. No
+rotation trial was initiated, and the conditional carrier test was not run.
+See [raw report](r10-orientation-images/jlc-focused-browser-run.json) and
+[assessment](r10-orientation-images/jlc-focused-assessment.json). This does not
+prove JLC cannot expose/export data; it establishes failure of this automation
+method to retrieve it. Do not repeat the same TinyFish approach. Next requires
+a directly inspectable browser/data capture (the MacBook handoff route), or
+authorized JLC production-pose verification. No corrections or approval; all213
+local package files still verify unchanged. This update is local/unpushed.
+
+The user authorized reversible, quote-only connector rotation tests in the
+existing r10 JLC drafts, keeping the native boards unchanged. This supersedes
+the earlier no-preview-rotations restriction only for those tests; it does not
+authorize production approval, purchases, substitutions or vendor contact.
+
+The bounded [TinyFish pass](https://agent.tinyfish.ai/runs/d75727db-b8b6-4f6b-9c0f-c049876ac4a3)
+completed after573seconds/53steps. It reports no placement changes and performed
+no before/after rotation test. Its narrative did not return inspectable pin/peg
+captures or a placement export; conflicting angle/mouth claims cannot establish
+alignment. In particular, the reported power-jack90deg is not established as an
+absolute placement angle rather than a rotation-step control. PodJ1 angle was
+not observed. Do not adopt these as corrected poses or infer approval from BOM
+row counters. See the [raw result](r10-orientation-images/jlc-browser-run.json)
+and [coordinator assessment](r10-orientation-images/jlc-browser-assessment.json).
+
+Local catalog-model registration and opposing45deg renders are diagnostic;
+they do not replay the actual JLC draft's CPL interpretation. All213 r10 payload
+files remain unchanged and pass upload-integrity verification. Both drafts remain
+on placement HOLD. Next: obtain an inspectable selected-reference absolute
+placement row plus physical pin/peg/model evidence, or seek authorized JLC
+production-pose verification if the viewer cannot expose it. No additional
+unverified rotation loop. This checkpoint is local/unpushed.
+
+## Retained authorization — quote-only 7628A selection and preview evidence
 
 Following the assessment of MacBook commit278309e0, the user explicitly authorized
 **quote-only selection of JLC04161H-7628A**, including the reported1.5542mm ±10%
@@ -17,9 +73,10 @@ and hash-bound native audit distinguish matching native/CPL geometry from the
 still-unknown JLC model/production transform. Earlier requests for authorization
 to select this exact stack for quotation are superseded only to that extent.
 
-No new board/package revision, CPL rotation, vendor message, purchase, payment,
+No new board/package revision, source CPL edit, vendor message, purchase, payment,
 reservation, substitution, noncancelable sourcing or manufacturing commitment
-is authorized. The prior$390.97 excludes shipping/tax/HOME and must be refreshed
+is authorized by the stack selection. Quote-only preview rotation trials are
+separately authorized above. The prior$390.97 excludes shipping/tax/HOME and must be refreshed
 after confirmed stack selection. Other manufacturing/first-article holds remain.
 
 ## Publication handoff — r10 quote-only successor

@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-01",
+  "scope": "Local connector orientation diagnostics; not production acceptance",
+  "original_skill_contracts": [
+    "skills/jlcpcb-fab/references/connector-orientation.md: P-ORIENT, P-MATE-REG",
+    "skills/jlcpcb-fab/references/digital-twin.md"
+  ],
+  "methods": [
+    "Fetched C599441 and C3096093 public catalog CAD through original jlc_twin.fetch, one attempt each.",
+    "Compared every numbered connector pad using original jlc_twin.best_fit over quarter-turns and mirror candidates.",
+    "Checked all 18 RJ locator holes independently of the numbered-pad fit.",
+    "Installed only catalog connector models into diagnostic copies using original twin model-transform formula, without moving native footprints or pads.",
+    "Rendered diagnostic copies with KiCad native renderer from top and opposing 45-degree views.",
+    "Compared mouth direction with retained Amphenol and Same Sky mechanical drawings."
+  ],
+  "catalog_sources": [
+    "https://easyeda.com/api/products/C599441/components",
+    "https://easyeda.com/api/products/C3096093/components"
+  ],
+  "manufacturer_sources": [
+    "/home/mouse9911/.codex/attachments/1b86f46e-dddc-446c-98ca-6028676a1dea/rjhsex080.pdf",
+    "projects/crow-array/order-readiness/power-jack-r10-review/source-evidence/2-P028-manufacturer.pdf"
+  ],
+  "findings": {
+    "RJ_carrier_J101_J108_and_pod_J1": "Catalog-to-native local pad-fit rotation 180 degrees; maximum numbered-pad residual 0.014 mm and locator residual 0.004 mm. Fitted model openings face the connector edge, agreeing with manufacturer-derived native direction.",
+    "power_carrier_J1": "Catalog-to-native local pad-fit rotation 180 degrees, combined with native footprint rotation 180 degrees. Maximum rounded-fit pad residual below 0.001 mm. Fitted model opening faces outward.",
+    "previous_render_limitation": "Drawing-derived solids demonstrate declared geometry, not an independent catalog-model registration check.",
+    "hypothesis": "A catalog/native orientation convention difference may explain the inward JLC previews. This is not a verified diagnosis of the actual JLC drafts."
+  },
+  "remaining_holds": [
+    "Capture and compare actual JLC numbered-pin, hole, peg and mouth registration; public catalog CAD alone does not establish draft model or CPL convention.",
+    "No complete P-ORIENT/P-MATE-REG acceptance, signed-side/body census or plug-fit approval was performed.",
+    "Pico USB/module and other component bodies are not included in these focused connector renders.",
+    "No native board, CPL, quote package or JLC draft changes are authorized by these diagnostics."
+  ],
+  "accepted": false,
+  "source_package_integrity": "r10_upload_check.py PASS_UPLOAD_INTEGRITY_ONLY; 213 files unchanged"
+}
