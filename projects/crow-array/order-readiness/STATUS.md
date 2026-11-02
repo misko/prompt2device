@@ -1,5 +1,9 @@
 # Crow exact-job order readiness
 
+## 2 November 2026 MacBook pod A/B experiment
+
+The separate [pod diagnostic draft](r10-pod-ab-session-20261102/REPORT.md) was tested with baseline A and J1-180 test B. JLC's selected model visibly turned, and B's appearance persisted after reopening. The eight solder tails, two pegs and opening could not all be verified, so the result is **inconclusive** and A was re-uploaded and visually restored. The diagnostic draft remains NOT FOR ORDER; the original drafts were not edited. Pod J1, carrier J101–J108 and carrier power J1 remain on placement HOLD. No purchase, reservation or manufacturing approval occurred.
+
 ## 2 November 2026 MacBook pod comparison handoff
 
 Next action: run the [updated pod A/B handoff](quote-tests/r10-pod-j1-180/README.md)
