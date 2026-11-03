@@ -1,21 +1,22 @@
 # Crow exact-job order readiness
 
-## 3 November: new pod C draft exists; saved placement remains unverified
+## 3 November: pod trial-C saved coordinates verified; mechanical review open
 
-[Session report and prior-session screenshot](quote-tests/r10-connector-mapping/macbook-c-session-20261103/README.md)
-record the separate diagnostic C draft, uploaded files, selected C599441 match,
-and pending saved-coordinate/model/mouth checks. The 3 November browser tool
-reports local browser use disabled despite the user reporting it enabled.
-No fresh live verification was possible. Prior viewer-arrow clicks and subsequent
-C reprocessing do not prove the effective placement. Keep all manufacturing holds.
-The user's fresh-draft instruction leaves old baseline A untouched and keeps the
-new C draft diagnostic; do not overwrite either merely to repeat the experiment.
-No purchases, reservations or manufacturing commitments.
+[Session report and sanitized evidence](quote-tests/r10-connector-mapping/macbook-c-session-20261103/README.md)
+record the separate diagnostic C draft, exact uploaded filenames and local
+hashes, and the reopened J1 record: C599441, X 10.556 mm, Y −9.390 mm,
+180°, with zero default-panel offsets and angle. C remains loaded in this new
+draft; A was not restored there. The earlier baseline-A draft remains separate.
+Keep the new draft on HOLD; the next checks are its loaded model identity/hash,
+pin and peg replay, and outward socket opening—not a repeat of coordinate
+investigation. D2/D3 were omitted only in this diagnostic preview after a
+shortage; both remain required for production. Carrier connectors require
+separate checks. No purchases, reservations or manufacturing commitments.
 
 Earlier dated findings below are historical; their draft-unchanged and
 restore-A statements do not describe the subsequent separate C-draft session.
 
-## Current next step: captured J1 geometry supports test C
+## Historical backend review: captured J1 geometry supports test C
 
 The [backend numerical review](quote-tests/r10-connector-mapping/LOADED-J1-REVIEW.md)
 of MacBook commit `9cec4096` establishes the captured pod footprint's raw origin

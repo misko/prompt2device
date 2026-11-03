@@ -1,0 +1,77 @@
+The following is a diff from the previous accessibility tree for Window: "JLCPCB PCBA Viewer" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 1295-1302
+~																					991 row    0 : {pick_index: 1, bom_index: 1, des: 'D4', ft_name: 'SOT-23-5', ft_pins: 'SOT-23-5', …}
+~																					1291 row    25 :
++																					1334 container
++																						1335 row (selected)    bom_index : 18
++																							1336 container
++																								1337 text bom_index
++																								1338 text :
++																								1339 text 18
++																						1340 row    des : "J1"
++																							1341 container
++																								1342 text des
++																								1343 text :
++																								1344 text "J1"
++																						1345 row    des_lock : false
++																							1346 container
++																								1347 text des_lock
++																								1348 text :
++																								1349 text false
++																						1350 row    ec : {x: 10.556, y: -9.39, ang: 180}
++																							1351 container
++																								1352 text ec
++																								1353 text :
++																								1354 container Object
++																									1355 text { x :  10.556 ,  y :  -9.39 ,  ang :  180 }
++																						1356 row    ft_name : "插件"
++																							1357 container
++																								1358 text ft_name
++																								1359 text :
++																								1360 text "插件"
++																						1361 row    ft_pins : "插件"
++																							1362 container
++																								1363 text ft_pins
++																								1364 text :
++																								1365 text "插件"
++																						1366 row    is_mount : true
++																							1367 container
++																								1368 text is_mount
++																								1369 text :
++																								1370 text true
++																						1371 row    lc_code : "C599441"
++																							1372 container
++																								1373 text lc_code
++																								1374 text :
++																								1375 text "C599441"
++																						1376 row    oc : {x: '10.556000mm', y: '-9.390000mm', rx: '', px: '', py: '', …}
++																							1377 container
++																								1378 text oc
++																								1379 text :
++																								1380 container Object
++																									1381 text { x :
++																									1382 text '10.556000mm'
++																									1383 text ,  y :
++																									1384 text '-9.390000mm'
++																									1385 text ,  rx :  '' ,  px :  '' ,  py :  '' , … }
++																						1386 row    pick_index : 26
++																							1387 container
++																								1388 text pick_index
++																								1389 text :
++																								1390 text 26
++																						1391 row    sel_mount : true
++																							1392 container
++																								1393 text sel_mount
++																								1394 text :
++																								1395 text true
++																						1396 row    source : "shop"
++																							1397 container
++																								1398 text source
++																								1399 text :
++																								1400 text "shop"
++																						1401 row    [[Prototype]] : Object
++																							1402 container
++																								1403 text [[Prototype]] :
++																								1404 text Object
+~							88 text DevTools is docked to right  expanded
+The focused UI element is 1335 row (selected)    bom_index : 18

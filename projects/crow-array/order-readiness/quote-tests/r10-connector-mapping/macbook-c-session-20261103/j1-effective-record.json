@@ -1,0 +1,36 @@
+{
+  "draft": "c11ad98ea0534ce78a6c3bc004515ffc",
+  "date": "2026-11-03",
+  "source": "Chrome DevTools UI: JLC loadMerge() bom_merge data logged 06:22:10.563 after draft reload; manually expanded existing logged object, no console commands executed",
+  "record_path": "designator_info[0].top[25]",
+  "des": "J1",
+  "lc_code": "C599441",
+  "ec": {
+    "x": 10.556,
+    "y": -9.39,
+    "ang": 180
+  },
+  "is_mount": true,
+  "sel_mount": true,
+  "oc_visible": {
+    "x": "10.556000mm",
+    "y": "-9.390000mm"
+  },
+  "board": {
+    "x_datum": 0,
+    "y_datum": 0,
+    "flipped_from_orig": false,
+    "mirror_x_datum": null,
+    "mirror_y_datum": null,
+    "set": [
+      {
+        "name": "default",
+        "x_offset": 0,
+        "y_offset": 0,
+        "ang": 0
+      }
+    ]
+  },
+  "result": "Reopened draft effective coordinate record matches trial C. No extra transform in displayed board/set records.",
+  "limits": "Loaded 3D model hash, eight pin and two peg replay, socket mouth direction, and manufacturing acceptance remain pending. No J1 placement edits made."
+}

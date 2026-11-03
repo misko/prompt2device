@@ -1,78 +1,94 @@
-# Pod J1 diagnostic C: saved placement verification pending
+# Pod J1 trial C: saved coordinates verified, mechanical review open
 
-Report prepared 3 November 2026 (America/Los_Angeles). Base: `864783eb`.
-**HOLD: diagnostic only, not for order or manufacturing approval.**
+3 November 2026. **Diagnostic draft only; HOLD. Not for order or manufacturing
+approval.** The 3 November read-only capture verifies J1's saved coordinate
+record after reopening. It does not establish mechanical acceptance.
 
-## Draft and prior-session observations
+## Draft identity and uploaded files
 
-[New diagnostic pod draft](https://cart.jlcpcb.com/smt-order/?pcbFileNo=c11ad98ea0534ce78a6c3bc004515ffc).
-The user requested a fresh diagnostic draft instead of modifying the existing
-baseline-A draft. Original production-intent drafts and old diagnostic A were
-not modified. This fresh draft retains trial C; do not treat the old restore-A
-instruction as an instruction to overwrite this separate C draft.
+The [new trial-C diagnostic draft](https://cart.jlcpcb.com/smt-order/?pcbFileNo=c11ad98ea0534ce78a6c3bc004515ffc)
+is `c11ad98ea0534ce78a6c3bc004515ffc`. It is **not** the earlier
+[baseline-A diagnostic draft](https://cart.jlcpcb.com/smt-order/?pcbFileNo=1f8dfa850b474dc9b4ac3860b26bbd59),
+`1f8dfa850b474dc9b4ac3860b26bbd59`. Following the user's request for a fresh
+draft, the agent started a new JLC quote, uploaded the pod Gerbers, configured
+10 fabricated / 8 assembled boards and uploaded the reviewed BOM and trial-C
+CPL. In the initial session the upload dialog showed the expected BOM and CPL
+filenames; after two viewer-arrow clicks whose effects were uncertain, the agent
+reprocessed the same files. Production-intent drafts and the older baseline-A
+draft were not deliberately modified.
 
-The preceding 2 November browser session configured 10 fabricated / 8 assembled
-pods, Standard top assembly, 4 layers, 1.6 mm, ENIG and JLC04161H-7628.
-Both review preferences were set to Do not confirm automatically. JLC displayed
-two 5 mm rails and an 85 x 88 mm modified size; manufacturing review remains open.
-These are prior-session observations, not a fresh verification of saved settings.
+The exact uploaded filenames and SHA-256 hashes of the corresponding local
+input files, independently rechecked for this report, are:
 
-The reviewed Gerber, merged BOM and trial-C CPL were uploaded. JLC reported
-20 grouped BOM lines confirmed/selected, including RJHSE-5080 / C599441 for J1
-(quantity 8; displayed component-line cost $7.5576). The placement preview loaded.
-The CPL specifies J1 X 10.556 mm, Y -9.390 mm, rotation 180 degrees, Top.
-This is input-file data, **not verified effective saved placement**.
+| Input | Repository-relative file under `projects/crow-array/order-readiness/` | SHA-256 |
+| --- | --- | --- |
+| Gerbers | `quote-draft/r10-2c8p-outward-power/pod-gerbers.zip` | `4e429cb5f7f21ab9927798d084e2be50e6525b395ab3f8059dbba714c7ffbb16` |
+| BOM | `quote-draft/r9-merged-bom-candidates/pod-bom-merged-v2.csv` | `d297047101ca69a0d3466518a5c2e85e9ab6f7d900e3f265640d1d1066b78131` |
+| Trial-C CPL | `quote-tests/r10-connector-mapping/generated/pod-ALL-CONNECTORS-RAW-ORIGIN-TEST-ONLY.csv` | `eef7d7cb2029a0f8f75eb1fbc9a9fa1b2d76430c377893c146dd8c14f9199710` |
 
-During visual inspection the agent clicked viewer arrow controls twice without
-establishing whether they affected placement. It then reopened the draft and
-reprocessed the original trial-C BOM/CPL. The upload dialog retained both expected
-filenames, and the preview loaded again. Effective coordinates after reprocessing
-were not extracted. Do not infer that the clicks were harmless or that
-reprocessing proved restoration. No further speculative adjustment is authorized.
+These are hashes of the local input files, not hashes independently returned by
+JLC for the server-side copies. The initial quote specified Standard top-side
+assembly, four layers, 1.6 mm, ENIG and JLC04161H-7628, with both production-file
+and placement review settings set to **Do not confirm automatically**. JLC
+displayed two 5 mm rails and an 85 x 88 mm modified size. Those are observations
+from initial setup, not a fresh verification of saved quote settings.
 
-The attached screenshot was captured on 2 November, not during the 3 November
-attempt. It shows J1 selected in the top preview with the matching C599441 row.
-It does not clearly expose the cable mouth, all eight tails, or both locator pegs.
-It is not alignment or manufacturing-acceptance evidence.
+## Saved J1 placement
 
-## Current verification attempt: blocked
+In the continuation, the draft was reopened and the existing JLC `loadMerge()`
+console object was expanded without executing console commands. The captured
+`designator_info[0].top[25]` record identifies J1 / `C599441` and reports:
 
-On 3 November the browser inventory tool repeatedly returned:
-`Local browser use is disabled in Work settings`.
-The user reports the setting is enabled; another retry returned the same error.
-No browser tab, saved coordinates, live model, or current settings were accessed
-in this attempt. No JLC mutations occurred in this attempt. Browser access must
-be restored before the pending verification can be completed.
+| Field | Captured value |
+| --- | --- |
+| Effective placement `ec` | X **10.556 mm**, Y **−9.390 mm**, angle **180°** |
+| Mount flags | `is_mount: true`, `sel_mount: true` |
+| Board datums | X 0, Y 0; `flipped_from_orig: false`; mirror datums null |
+| Default panel set | X offset 0, Y offset 0, angle 0 |
 
-The earlier precheck report records a matching cached-model hash in the OLD
-baseline-A draft. That result must not be represented as a fresh hash check in
-this new draft. See ../macbook-c-precheck-20261102.md and ../LOADED-J1-REVIEW.md.
+See the [sanitized record](j1-effective-record.json) and the
+[J1 accessibility capture](j1-effective-record-ax.txt). The latter contains
+the J1 row with trailing whitespace normalized; the JSON separately transcribes
+the observed board and panel fields.
+The [sanitized preview](j1-effective-preview-sanitized.png) shows J1 selected
+but is not evidence of its numerical coordinates, pin/peg alignment or mouth
+direction. Browser chrome, unrelated console contents and metadata were removed
+from the preview.
 
-## Backend handoff
+**Trial C remains loaded in the new diagnostic draft; baseline A was not
+restored there.** This differs from the earlier same-draft restore-A procedure:
+the user subsequently requested a fresh draft for each test. Keep the new C
+draft on HOLD and do not overwrite the separate old baseline-A draft. The
+verified coordinate record supersedes the earlier coordinate-access blocker;
+do not repeat that investigation merely to establish the same values.
 
-1. Preserve this diagnostic draft on HOLD; preserve native boards, r10 uploads,
-   old baseline A, and production-intent drafts.
-2. Once browser access works, read the saved/effective J1 comp_info/ec record,
-   selection and panel transforms. Confirm X 10.556, Y -9.390, angle 180, Top,
-   C599441, required parts selected, and no extra offset/rotation. Reopen and
-   confirm persistence. Capture actual records, not the toolbar increment.
-3. Match the already-loaded package/model and hash the relevant cached OBJ.
-   Expected model UUID: 7d3d1c9e95104606a19576559311bb67; expected SHA-256:
-   7e16867569831cd98a298dcf3dc5d4692343d067e36dc1aed26f7216d8ff39da.
-   Use the existing documented read-only extraction; exclude credentials,
-   unrelated account data, signed URLs and full HAR files.
-4. Capture an oblique view proving the cable-entry mouth faces the native -Y
-   edge. Replay all eight pins and both pegs with the verified effective
-   transforms using the backend assessment. Nominal geometry is not production
-   acceptance. Report any mismatch before changing anything.
-5. Carrier J101-J108 and power J1 remain separate checks after pod review.
-   Do not promote this diagnostic CPL to production or finalize placement.
+## Diagnostic omission
 
-No purchases, reservations, substitutions, vendor messages or manufacturing
-commitments. A complete quote was not obtained in this verification attempt.
+The continuation reported a shortage of BAT54S-7-F / `C83574`: JLC displayed
+21 needed including allowance, 4 available, and a shortfall of 17. To inspect
+the diagnostic preview, D2 and D3 were omitted in **this diagnostic draft only**;
+the continued BOM showed 19 confirmed grouped lines. **Both D2 and D3 remain
+required for production.** This draft is not a complete assembly quote or a
+production-ready BOM. Resolve the shortage without substitution before any
+production proposal.
 
-## Input-file hashes from the clean checkout
+## Next backend check
 
-- `quote-draft/r10-2c8p-outward-power/pod-gerbers.zip`: `4e429cb5f7f21ab9927798d084e2be50e6525b395ab3f8059dbba714c7ffbb16`
-- `quote-draft/r9-merged-bom-candidates/pod-bom-merged-v2.csv`: `d297047101ca69a0d3466518a5c2e85e9ab6f7d900e3f265640d1d1066b78131`
-- `quote-tests/r10-connector-mapping/generated/pod-ALL-CONNECTORS-RAW-ORIGIN-TEST-ONLY.csv`: `eef7d7cb2029a0f8f75eb1fbc9a9fa1b2d76430c377893c146dd8c14f9199710`
+1. Verify the **actual loaded model identity and cached OBJ hash in this new
+   draft**, rather than assuming the old draft's asset matches. The previously
+   assessed UUID is `7d3d1c9e95104606a19576559311bb67`; the expected SHA-256
+   is `7e16867569831cd98a298dcf3dc5d4692343d067e36dc1aed26f7216d8ff39da`.
+   The prior matching cache observation was from the older A draft and does not
+   prove the new draft's loaded asset.
+2. Replay all eight pins and both locator pegs using that verified model and the
+   captured trial-C placement and panel transforms. Verify that the actual
+   cable-entry mouth faces the native −Y board edge. Record any mismatch before
+   changing anything. Nominal geometry checks do not constitute manufacturing
+   acceptance.
+3. Review carrier J101–J108 individually and power J1 separately after the pod
+   result. Do not copy the diagnostic CPL into production-intent drafts.
+
+Use only relevant sanitized records; exclude unrelated account information,
+credentials, signed URLs and full HAR files. No purchases, reservations,
+substitutions, vendor messages or manufacturing approvals were made in the
+reported session. Native boards and production files remain unchanged.
