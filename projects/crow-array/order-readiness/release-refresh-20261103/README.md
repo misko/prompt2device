@@ -119,11 +119,11 @@ evidence that the JLC draft is unavailable.
    obtain complete itemized quote/placement evidence before release sealing.
 
 The agreed home-install split remains two Picos, two oscillators, eight
-microphones and eight buzzers. The goal's all-JLC sourcing wording is not yet
-satisfied: exact JLC sources for three of those identities were not found, and
-an overseas oscillator offer does not establish home-delivery eligibility.
-Do not silently redefine the release as all-JLC or all-factory-assembled.
-Clarify any intended change to that agreed split before dependent changes.
+microphones and eight buzzers. On 3 November the user explicitly confirmed
+external sourcing for these parts; the JLC availability requirement applies
+to factory-installed parts. See [the recorded decision](../STATUS.md#user-sourcing-decision-on-3-november-2026).
+External exact-part availability and handling checks remain required. An
+overseas JLC oscillator offer does not establish home-delivery eligibility.
 
 Previous goal turn classification: progress, because the new saved-coordinate
 evidence was inspected, matched to inputs and replayed successfully. This turn

@@ -104,7 +104,10 @@ no longer manufactured; **this is not adopted as a manufacturer lifecycle
 determination**, particularly for the generic JLCPCB Assembly Pico listing.
 The initial MPN misses were not proof of zero stock. The buzzer search still
 found no exact JLC offer. The preserved recovery JSON records these limitations.
-No home-install part or source was changed; the user clarification is pending.
+No home-install part or source was changed. The user subsequently confirmed
+external sourcing for all agreed home-install parts on 3 November; see
+[the recorded decision](../STATUS.md#user-sourcing-decision-on-3-november-2026).
+The JLC-only requirement therefore applies to factory-installed parts.
 
 TinyFish tools remain unavailable in this session. Saved pod test-C placement
 is already verified; its actual loaded-model hash/outward mouth, carrier

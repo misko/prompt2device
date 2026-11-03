@@ -1,5 +1,23 @@
 # Crow exact-job order readiness
 
+## User sourcing decision on 3 November 2026
+
+The user explicitly selected **keep external sourcing for home-install parts**.
+The final-release JLC availability requirement applies to factory-installed
+parts. For two assembled carriers and eight pods, preserve external sourcing
+and home installation of two Raspberry Pi SC0915 Picos, two TI
+LMK6CE012288CDLFR clocks, eight Same Sky CMA-4544PF-W microphones and eight
+Same Sky CPE-203 buzzers. Their exact identities, handling requirements and
+external availability checks remain required; JLC catalog absence alone does
+not trigger replacement of these parts.
+
+This resolves the all-JLC versus home-install scope question in the reviews
+below. No purchase, reservation, substitution, assembly reassignment or
+manufacturing commitment is authorized by this decision. Factory diode stock,
+connector/model verification and manufacturing acceptance remain open. The
+goal was marked blocked on unavailable signed-in browser evidence; this
+decision does not establish browser reconnection. Release remains HOLD.
+
 ## Diode candidate engineering screen completed on 3 November 2026
 
 [Nexperia BAT54S,215 / C47546 review](diode-review-20261103/README.md) now
@@ -15,8 +33,8 @@ qualification conditions, not newly guaranteed facts.
 
 Exact-code recovery also found JLC microphone/Pico listings not orderable;
 those catalog flags do not independently establish manufacturer lifecycle.
-Clarification of all-JLC sourcing versus agreed external home-install sources
-is pending. No production files or drafts changed. Goal active, release HOLD.
+The subsequent user decision above resolves the sourcing-scope question.
+No production files or drafts changed; release remains HOLD.
 
 ## Release sourcing refresh on 3 November 2026
 
