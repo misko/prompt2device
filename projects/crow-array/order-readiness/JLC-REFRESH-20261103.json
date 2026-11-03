@@ -1,0 +1,2538 @@
+{
+  "schema": "jlc-stock-v1",
+  "command": "bom",
+  "input": "projects/crow-array/order-readiness/quote-draft/r10-2c8p-outward-power/procurement-plan.csv",
+  "created_at": "2026-11-03T14:48:14.485997+00:00",
+  "notice": "Reported public snapshots, not reserved PCBA inventory. Unknown is not zero. Overseas/presale pools are separate and never added. No purchasing actions.",
+  "results": [
+    {
+      "mpn": "RJHSE-5080",
+      "code": "C599441",
+      "needed": 24,
+      "manufacturer": "Amphenol ICC",
+      "package": "Plugin",
+      "description": "-55℃~+85℃ 1 Gold Non-LED Phosphor bronze Right Angle Unshielded 插件 Ethernet Connectors / Modular Connectors (RJ45 RJ11) ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-10-31T20:33:34.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "RJHSE-5080",
+        "manufacturer": "Amphenol ICC",
+        "package": "Plugin",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 836,
+        "presale": 575,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "RJHSE-5080",
+            "componentBrandEn": "Amphenol ICC",
+            "componentCode": "C599441",
+            "componentSpecificationEn": "Plugin"
+          },
+          {
+            "componentModelEn": "RJHSE-5080",
+            "componentBrandEn": "Amphenol ICC",
+            "componentCode": "C599441",
+            "componentSpecificationEn": "Plugin",
+            "overseasStockCount": 836,
+            "canPresaleNumber": 575,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "RJHSE-5080",
+            "componentBrandEn": "Amphenol ICC",
+            "componentCode": "C599441",
+            "componentSpecificationEn": "Plugin",
+            "overseasStockCount": 836,
+            "canPresaleNumber": 575,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C599441",
+          "retrieved_at": "2026-11-03T14:48:15.454738+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:15 GMT",
+          "http_age": null,
+          "sha256": "26e6ce0e99722096c9ea376344408e152b554d4c849b52ff3512b4014097c631"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "Amphenol",
+      "manufacturer_review": "Catalog spelling differs; confirm identity (no alias inferred).",
+      "query": "RJHSE-5080",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C599441&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:14.791447+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:14 GMT",
+        "http_age": null,
+        "sha256": "44deaf13869226f15f6d2eba0b6874930b36f00101a9e4e62b8f907e029bc9b6",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        2
+      ]
+    },
+    {
+      "mpn": "LMK6CE012288CDLFR",
+      "code": "C36974742",
+      "needed": 2,
+      "manufacturer": "Texas Instruments",
+      "package": "VSON-4(2x2.5)",
+      "description": "VSON-4(2x2.5) Crystal Oscillators ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-11-02T00:52:40.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "LMK6CE012288CDLFR",
+        "manufacturer": "Texas Instruments",
+        "package": "VSON-4(2x2.5)",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 10,
+        "presale": 10,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "LMK6CE012288CDLFR",
+            "componentBrandEn": "Texas Instruments",
+            "componentCode": "C36974742",
+            "componentSpecificationEn": "VSON-4(2x2.5)"
+          },
+          {
+            "componentModelEn": "LMK6CE012288CDLFR",
+            "componentBrandEn": "Texas Instruments",
+            "componentCode": "C36974742",
+            "componentSpecificationEn": "VSON-4(2x2.5)",
+            "overseasStockCount": 10,
+            "canPresaleNumber": 10,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "LMK6CE012288CDLFR",
+            "componentBrandEn": "Texas Instruments",
+            "componentCode": "C36974742",
+            "componentSpecificationEn": "VSON-4(2x2.5)",
+            "overseasStockCount": 10,
+            "canPresaleNumber": 10,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C36974742",
+          "retrieved_at": "2026-11-03T14:48:15.529416+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:15 GMT",
+          "http_age": null,
+          "sha256": "d82bfd5ac14be3d7474e01c527a9eb9ac772a5e5012fcd13167fc04582ff5abe"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "Texas Instruments",
+      "query": "LMK6CE012288CDLFR",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C36974742&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:14.811642+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:14 GMT",
+        "http_age": null,
+        "sha256": "ae905ae70ea860b336283b685e08101f1717ac5e177a3548158aeabc71827de3",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        3
+      ]
+    },
+    {
+      "mpn": "1N5819HW-7-F",
+      "code": "C82544",
+      "needed": 2,
+      "manufacturer": "Diodes Incorporated",
+      "package": "SOD-123",
+      "description": "-65℃~+150℃ 1 Independent 1A 1mA@40V 25A 40V 450mV@1A SOD-123 Schottky Diodes ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-10-31T12:30:34.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "1N5819HW-7-F",
+        "manufacturer": "Diodes Incorporated",
+        "package": "SOD-123",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 257503,
+        "presale": 250255,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "1N5819HW-7-F",
+            "componentBrandEn": "Diodes Incorporated",
+            "componentCode": "C82544",
+            "componentSpecificationEn": "SOD-123"
+          },
+          {
+            "componentModelEn": "1N5819HW-7-F",
+            "componentBrandEn": "Diodes Incorporated",
+            "componentCode": "C82544",
+            "componentSpecificationEn": "SOD-123",
+            "overseasStockCount": 257503,
+            "canPresaleNumber": 250255,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "1N5819HW-7-F",
+            "componentBrandEn": "Diodes Incorporated",
+            "componentCode": "C82544",
+            "componentSpecificationEn": "SOD-123",
+            "overseasStockCount": 257503,
+            "canPresaleNumber": 250255,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C82544",
+          "retrieved_at": "2026-11-03T14:48:15.554705+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:15 GMT",
+          "http_age": null,
+          "sha256": "af4d26729b29154947dc1774fdc13bb0f0b4d9039c2d0a1a4f4d16e25b1f9f34"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "Diodes Incorporated",
+      "query": "1N5819HW-7-F",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C82544&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:14.859287+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:14 GMT",
+        "http_age": null,
+        "sha256": "7ce34897dc3b922263d1aa431dc698fdf2446729853a947fb26596796ce26b0e",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        4
+      ]
+    },
+    {
+      "mpn": "BAT54S-7-F",
+      "code": "C83574",
+      "needed": 16,
+      "manufacturer": null,
+      "package": "SOT-23",
+      "description": "1 Pair Series Connection 200mA 2uA@25V 30V 600mA 800mV@100mA SOT-23 Schottky Diodes ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-10-31T00:46:43.000Z",
+      "jlcpcb": {
+        "state": "lookup_failed",
+        "url": "https://jlcpcb.com/partdetail/C83574",
+        "error": "HTTP Error 429: Too Many Requests"
+      },
+      "status": "UNVERIFIED",
+      "requested_manufacturer": "Diodes Incorporated",
+      "query": "BAT54S-7-F",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C83574&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:14.901208+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:14 GMT",
+        "http_age": null,
+        "sha256": "3fd45dcc7776864976d815d9443bf2a96584cc788f59a803e2bc7c20e23dadae",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        5
+      ]
+    },
+    {
+      "mpn": "BZT52C3V9-7-F",
+      "code": "C154917",
+      "needed": 32,
+      "manufacturer": "Diodes Incorporated",
+      "package": "SOD-123",
+      "description": "1 Independent 3.7V~4.1V 3.9V 370mW 3uA@1V 600Ω 90Ω SOD-123 Zener Diodes ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-10-31T20:33:33.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "BZT52C3V9-7-F",
+        "manufacturer": "Diodes Incorporated",
+        "package": "SOD-123",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 11418,
+        "presale": 11345,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "BZT52C3V9-7-F",
+            "componentBrandEn": "Diodes Incorporated",
+            "componentCode": "C154917",
+            "componentSpecificationEn": "SOD-123"
+          },
+          {
+            "componentModelEn": "BZT52C3V9-7-F",
+            "componentBrandEn": "Diodes Incorporated",
+            "componentCode": "C154917",
+            "componentSpecificationEn": "SOD-123",
+            "overseasStockCount": 11418,
+            "canPresaleNumber": 11345,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "BZT52C3V9-7-F",
+            "componentBrandEn": "Diodes Incorporated",
+            "componentCode": "C154917",
+            "componentSpecificationEn": "SOD-123",
+            "overseasStockCount": 11418,
+            "canPresaleNumber": 11345,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C154917",
+          "retrieved_at": "2026-11-03T14:48:16.000037+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:15 GMT",
+          "http_age": null,
+          "sha256": "e0b9411e27441d1b8e30b7cdc0a2634d569b2c4ddaf42301bcb256fde9378c7b"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "Diodes Incorporated",
+      "query": "BZT52C3V9-7-F",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C154917&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:14.829383+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:14 GMT",
+        "http_age": null,
+        "sha256": "3fc99f259b0fb6207426445ed6b15a24a716664c2a2fff428f44df8b372e9661",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        6
+      ]
+    },
+    {
+      "mpn": "DMN3023L-7",
+      "code": "C443825",
+      "needed": 24,
+      "manufacturer": "Diodes Incorporated",
+      "package": "SOT-23",
+      "description": "-55℃~+150℃ 1 N-channel 1.3W 1.8V 18.4nC 25mΩ@10V 30V 6.2A 67pF 873pF SOT-23 MOSFETs ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-10-31T20:33:37.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "DMN3023L-7",
+        "manufacturer": "Diodes Incorporated",
+        "package": "SOT-23",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 8728,
+        "presale": 8542,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "DMN3023L-7",
+            "componentBrandEn": "Diodes Incorporated",
+            "componentCode": "C443825",
+            "componentSpecificationEn": "SOT-23"
+          },
+          {
+            "componentModelEn": "DMN3023L-7",
+            "componentBrandEn": "Diodes Incorporated",
+            "componentCode": "C443825",
+            "componentSpecificationEn": "SOT-23",
+            "overseasStockCount": 8728,
+            "canPresaleNumber": 8542,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "DMN3023L-7",
+            "componentBrandEn": "Diodes Incorporated",
+            "componentCode": "C443825",
+            "componentSpecificationEn": "SOT-23",
+            "overseasStockCount": 8728,
+            "canPresaleNumber": 8542,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C443825",
+          "retrieved_at": "2026-11-03T14:48:15.764435+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:15 GMT",
+          "http_age": null,
+          "sha256": "af8f86d209348d764c1ebbd150dfb9fc1d318fdfbe6bc13ff9f83f8703b3fb93"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "Diodes Incorporated",
+      "query": "DMN3023L-7",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C443825&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:14.821329+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:14 GMT",
+        "http_age": null,
+        "sha256": "f8147686f251191ca3e7cf8e37700fd94c5a0d37e79131ab1b1300ce8193da67",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        7
+      ]
+    },
+    {
+      "mpn": "0451001.MRL",
+      "code": "C3099",
+      "needed": 2,
+      "manufacturer": "Littelfuse",
+      "package": "2410",
+      "description": "-55℃~+125℃ 0.6029 125V 125V 1A 2.5mm 50A 6.1mm Surface Mount Fuse 2410 Disposable fuses ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-10-31T09:32:54.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "0451001.MRL",
+        "manufacturer": "Littelfuse",
+        "package": "2410",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 15303,
+        "presale": 14511,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "0451001.MRL",
+            "componentBrandEn": "Littelfuse",
+            "componentCode": "C3099",
+            "componentSpecificationEn": "2410"
+          },
+          {
+            "componentModelEn": "0451001.MRL",
+            "componentBrandEn": "Littelfuse",
+            "componentCode": "C3099",
+            "componentSpecificationEn": "2410",
+            "overseasStockCount": 15303,
+            "canPresaleNumber": 14511,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "0451001.MRL",
+            "componentBrandEn": "Littelfuse",
+            "componentCode": "C3099",
+            "componentSpecificationEn": "2410",
+            "overseasStockCount": 15303,
+            "canPresaleNumber": 14511,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C3099",
+          "retrieved_at": "2026-11-03T14:48:16.067102+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:15 GMT",
+          "http_age": null,
+          "sha256": "e4c2f9dee04969dcf36d4961e605ae9a5784baf09e8fa9e489629f5d0704b59f"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "Littelfuse",
+      "query": "0451001.MRL",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C3099&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:15.297564+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:15 GMT",
+        "http_age": null,
+        "sha256": "3a9610a50a70cf3129b638b1f73226d77bf53d06b7a99e33f90360556949c468",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        8
+      ]
+    },
+    {
+      "mpn": "1206L010/30NR",
+      "code": "C7542926",
+      "needed": 24,
+      "manufacturer": "LUTE",
+      "package": "1206",
+      "description": "-40℃~+85℃ 1.2mm 1.6Ω 1.9mm 100mA 15Ω 1s 250mA 3.6mm 30V 40A 700mW 1206 Resettable Fuses ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-11-01T15:27:26.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "1206L010/30NR",
+        "manufacturer": "LUTE",
+        "package": "1206",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 33802,
+        "presale": 33797,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "1206L010/30NR",
+            "componentBrandEn": "LUTE",
+            "componentCode": "C7542926",
+            "componentSpecificationEn": "1206"
+          },
+          {
+            "componentModelEn": "1206L010/30NR",
+            "componentBrandEn": "LUTE",
+            "componentCode": "C7542926",
+            "componentSpecificationEn": "1206",
+            "overseasStockCount": 33802,
+            "canPresaleNumber": 33797,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "1206L010/30NR",
+            "componentBrandEn": "LUTE",
+            "componentCode": "C7542926",
+            "componentSpecificationEn": "1206",
+            "overseasStockCount": 33802,
+            "canPresaleNumber": 33797,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C7542926",
+          "retrieved_at": "2026-11-03T14:48:16.264939+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:16 GMT",
+          "http_age": null,
+          "sha256": "a957b3e2e036ba69c2a7c53c73ab1908060a6d278ae6597efd527d8f276a89d4"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "LUTE",
+      "query": "1206L010/30NR",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C7542926&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:15.615065+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:15 GMT",
+        "http_age": null,
+        "sha256": "838362ce7cb5a756a25d3dda0a6633231b40368754ac9195d4bc75fc25d9dad1",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        9
+      ]
+    },
+    {
+      "mpn": "SMBJ15A",
+      "code": "C83846",
+      "needed": 10,
+      "manufacturer": "Littelfuse",
+      "package": "DO-214AA",
+      "description": "-65℃~+150℃ 15V 16.7V 1uA 24.4V 24.6A 600W IEC 61000-4-2、IEC 61000-4-4 TVS Unidirectional DO-214AA ESD and Surge Protection (TVS/ESD) ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-11-03T07:33:58.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "SMBJ15A",
+        "manufacturer": "Littelfuse",
+        "package": "DO-214AA",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 26913,
+        "presale": 26186,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "SMBJ15A",
+            "componentBrandEn": "Littelfuse",
+            "componentCode": "C83846",
+            "componentSpecificationEn": "DO-214AA"
+          },
+          {
+            "componentModelEn": "SMBJ15A",
+            "componentBrandEn": "Littelfuse",
+            "componentCode": "C83846",
+            "componentSpecificationEn": "DO-214AA",
+            "overseasStockCount": 26913,
+            "canPresaleNumber": 26186,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "SMBJ15A",
+            "componentBrandEn": "Littelfuse",
+            "componentCode": "C83846",
+            "componentSpecificationEn": "DO-214AA",
+            "overseasStockCount": 26913,
+            "canPresaleNumber": 26186,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C83846",
+          "retrieved_at": "2026-11-03T14:48:16.314491+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:16 GMT",
+          "http_age": null,
+          "sha256": "d73123dc6a38ef079af8088ad362650342d89eb1d2435052bc9bac64db2add78"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "Littelfuse",
+      "query": "SMBJ15A",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C83846&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:15.698818+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:15 GMT",
+        "http_age": null,
+        "sha256": "e8d601cad8758aa1dac4211cba87c9676297ece12b3b8a4ac62a1d95ebc08c03",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        10
+      ]
+    },
+    {
+      "mpn": "SP0504BAHTG",
+      "code": "C10675",
+      "needed": 24,
+      "manufacturer": "Littelfuse",
+      "package": "SOT-23-5",
+      "description": "-40℃~+85℃ 100nA 30pF 5.5V 8V Four channels IEC 61000-4-2 TVS SOT-23-5 ESD and Surge Protection (TVS/ESD) ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-10-31T20:33:36.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "SP0504BAHTG",
+        "manufacturer": "Littelfuse",
+        "package": "SOT-23-5",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 2470,
+        "presale": 2157,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "SP0504BAHTG",
+            "componentBrandEn": "Littelfuse",
+            "componentCode": "C10675",
+            "componentSpecificationEn": "SOT-23-5"
+          },
+          {
+            "componentModelEn": "SP0504BAHTG",
+            "componentBrandEn": "Littelfuse",
+            "componentCode": "C10675",
+            "componentSpecificationEn": "SOT-23-5",
+            "overseasStockCount": 2470,
+            "canPresaleNumber": 2157,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "SP0504BAHTG",
+            "componentBrandEn": "Littelfuse",
+            "componentCode": "C10675",
+            "componentSpecificationEn": "SOT-23-5",
+            "overseasStockCount": 2470,
+            "canPresaleNumber": 2157,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C10675",
+          "retrieved_at": "2026-11-03T14:48:16.431925+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:16 GMT",
+          "http_age": null,
+          "sha256": "64e15f31dbb5c4e32a83f451129132018b7b3d7973371912dc7c4eb6a2ea67aa"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "Littelfuse",
+      "query": "SP0504BAHTG",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C10675&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:15.829028+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:15 GMT",
+        "http_age": null,
+        "sha256": "4a496f1c8917e5f3267aa76875c5ef56a67294b671179d5e69b42d2149891b10",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        11
+      ]
+    },
+    {
+      "mpn": "CL21B105KBFNNNE",
+      "code": "C28323",
+      "needed": 14,
+      "manufacturer": "Samsung Electro-Mechanics",
+      "package": "0805",
+      "description": "1uF 50V X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-10-31T04:34:19.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "CL21B105KBFNNNE",
+        "manufacturer": "Samsung Electro-Mechanics",
+        "package": "0805",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 2729727,
+        "presale": 1786947,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "CL21B105KBFNNNE",
+            "componentBrandEn": "Samsung Electro-Mechanics",
+            "componentCode": "C28323",
+            "componentSpecificationEn": "0805"
+          },
+          {
+            "componentModelEn": "CL21B105KBFNNNE",
+            "componentBrandEn": "Samsung Electro-Mechanics",
+            "componentCode": "C28323",
+            "componentSpecificationEn": "0805",
+            "overseasStockCount": 2729727,
+            "canPresaleNumber": 1786947,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "CL21B105KBFNNNE",
+            "componentBrandEn": "Samsung Electro-Mechanics",
+            "componentCode": "C28323",
+            "componentSpecificationEn": "0805",
+            "overseasStockCount": 2729727,
+            "canPresaleNumber": 1786947,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C28323",
+          "retrieved_at": "2026-11-03T14:48:16.976724+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:16 GMT",
+          "http_age": null,
+          "sha256": "0c5d206101f98853fb9265a678bde26309e598a984bbed4b59fcfc6374b294e6"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "Samsung Electro-Mechanics",
+      "query": "CL21B105KBFNNNE",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C28323&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:15.905879+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:15 GMT",
+        "http_age": null,
+        "sha256": "6ba48801d56e6fc3f3d75a2d8e3ec23a56544b06f71d45aaf4664976624ef8dd",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        12
+      ]
+    },
+    {
+      "mpn": "GRM21BR71A106MA73L",
+      "code": "C710992",
+      "needed": 20,
+      "manufacturer": "Murata Electronics",
+      "package": "0805",
+      "description": "10V 10uF X7R ±20% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-10-31T20:33:45.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "GRM21BR71A106MA73L",
+        "manufacturer": "Murata Electronics",
+        "package": "0805",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 6724,
+        "presale": 5702,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "GRM21BR71A106MA73L",
+            "componentBrandEn": "Murata Electronics",
+            "componentCode": "C710992",
+            "componentSpecificationEn": "0805"
+          },
+          {
+            "componentModelEn": "GRM21BR71A106MA73L",
+            "componentBrandEn": "Murata Electronics",
+            "componentCode": "C710992",
+            "componentSpecificationEn": "0805",
+            "overseasStockCount": 6724,
+            "canPresaleNumber": 5702,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "GRM21BR71A106MA73L",
+            "componentBrandEn": "Murata Electronics",
+            "componentCode": "C710992",
+            "componentSpecificationEn": "0805",
+            "overseasStockCount": 6724,
+            "canPresaleNumber": 5702,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C710992",
+          "retrieved_at": "2026-11-03T14:48:16.859046+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:16 GMT",
+          "http_age": null,
+          "sha256": "b6a9182836b25d77de6266795c7ebb7644d88c8b6c5a572597ce0a21a1bb3faf"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "Murata",
+      "manufacturer_review": "Catalog spelling differs; confirm identity (no alias inferred).",
+      "query": "GRM21BR71A106MA73L",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C710992&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:16.194597+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:16 GMT",
+        "http_age": null,
+        "sha256": "97f30a4fda61e9b5828f01f0116311ae3d184328e3b4eab7a85838997141bb67",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        13
+      ]
+    },
+    {
+      "mpn": "GRM31MR71E225KA93L",
+      "code": "C97962",
+      "needed": 32,
+      "manufacturer": "Murata Electronics",
+      "package": "1206",
+      "description": "2.2uF 25V X7R ±10% 1206 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-10-31T20:33:32.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "GRM31MR71E225KA93L",
+        "manufacturer": "Murata Electronics",
+        "package": "1206",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 1532,
+        "presale": 1525,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "GRM31MR71E225KA93L",
+            "componentBrandEn": "Murata Electronics",
+            "componentCode": "C97962",
+            "componentSpecificationEn": "1206"
+          },
+          {
+            "componentModelEn": "GRM31MR71E225KA93L",
+            "componentBrandEn": "Murata Electronics",
+            "componentCode": "C97962",
+            "componentSpecificationEn": "1206",
+            "overseasStockCount": 1532,
+            "canPresaleNumber": 1525,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "GRM31MR71E225KA93L",
+            "componentBrandEn": "Murata Electronics",
+            "componentCode": "C97962",
+            "componentSpecificationEn": "1206",
+            "overseasStockCount": 1532,
+            "canPresaleNumber": 1525,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C97962",
+          "retrieved_at": "2026-11-03T14:48:17.042249+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:16 GMT",
+          "http_age": null,
+          "sha256": "b6df68925c986659c9a11e019622d570aa2174bc0fb3890bd183449b6417a5e9"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "Murata",
+      "manufacturer_review": "Catalog spelling differs; confirm identity (no alias inferred).",
+      "query": "GRM31MR71E225KA93L",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C97962&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:16.360159+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:16 GMT",
+        "http_age": null,
+        "sha256": "629a065cdab79e2ce570dd737038183ed06dbe9b8f332b48be06edbba8842509",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        14
+      ]
+    },
+    {
+      "mpn": "GRM32ER71A476KE15L",
+      "code": "C84494",
+      "needed": 8,
+      "manufacturer": "Murata Electronics",
+      "package": "1210",
+      "description": "10V 47uF X7R ±10% 1210 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-10-31T14:27:28.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "GRM32ER71A476KE15L",
+        "manufacturer": "Murata Electronics",
+        "package": "1210",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 537,
+        "presale": 0,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "GRM32ER71A476KE15L",
+            "componentBrandEn": "Murata Electronics",
+            "componentCode": "C84494",
+            "componentSpecificationEn": "1210"
+          },
+          {
+            "componentModelEn": "GRM32ER71A476KE15L",
+            "componentBrandEn": "Murata Electronics",
+            "componentCode": "C84494",
+            "componentSpecificationEn": "1210",
+            "overseasStockCount": 537,
+            "canPresaleNumber": 0,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "GRM32ER71A476KE15L",
+            "componentBrandEn": "Murata Electronics",
+            "componentCode": "C84494",
+            "componentSpecificationEn": "1210",
+            "overseasStockCount": 537,
+            "canPresaleNumber": 0,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C84494",
+          "retrieved_at": "2026-11-03T14:48:18.034184+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:17 GMT",
+          "http_age": null,
+          "sha256": "c74951444f40d6b5327bfd230cc5f07b8345a70980d188a0756a628ca314c29e"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "Murata",
+      "manufacturer_review": "Catalog spelling differs; confirm identity (no alias inferred).",
+      "query": "GRM32ER71A476KE15L",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C84494&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:16.423586+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:16 GMT",
+        "http_age": null,
+        "sha256": "86bcd7c28b50b26e62c26a5cbcbee12086b56afa1c491b4a0f96428bd1e2e122",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        15
+      ]
+    },
+    {
+      "mpn": "ERJ-3EKF68R0V",
+      "code": "C403329",
+      "needed": 2,
+      "manufacturer": null,
+      "package": null,
+      "description": null,
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": null,
+      "jlcpcb": {
+        "state": "identity_mismatch",
+        "availability": null,
+        "stock": null,
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C403329",
+          "retrieved_at": "2026-11-03T14:48:17.760180+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:17 GMT",
+          "http_age": null,
+          "sha256": "fcb351726d7dbadcdda14409af5f302c8bfbe623c437dd31e385525202f8dbc1"
+        }
+      },
+      "status": "IDENTITY_MISMATCH",
+      "requested_manufacturer": "Panasonic Industry",
+      "query": "ERJ-3EKF68R0V",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C403329&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:16.516676+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:16 GMT",
+        "http_age": null,
+        "sha256": "3afe7d0d795302931500afac7ffca4ffa8deda7d682b2c3119415a9c9bce747d",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        16
+      ]
+    },
+    {
+      "mpn": "TSR 1-2450",
+      "code": "C6886877",
+      "needed": 2,
+      "manufacturer": "TRACO POWER",
+      "package": "-",
+      "description": "-40°C ~ 85°C (derating) 0.46\" L x 0.30\" W x 0.40\" H (11.7mm x 7.5mm x 10.1mm) 1 1A 3-SIP Module 36V 5 W 5V 6.5V 94% ITE (Commercial) Linear Regulator Replacement SCP Through hole - Power Module/Power Supply ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-11-01T15:27:23.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "TSR 1-2450",
+        "manufacturer": "TRACO POWER",
+        "package": "-",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 214,
+        "presale": 95,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "TSR 1-2450",
+            "componentBrandEn": "TRACO POWER",
+            "componentCode": "C6886877",
+            "componentSpecificationEn": "-"
+          },
+          {
+            "componentModelEn": "TSR 1-2450",
+            "componentBrandEn": "TRACO POWER",
+            "componentCode": "C6886877",
+            "componentSpecificationEn": "-",
+            "overseasStockCount": 214,
+            "canPresaleNumber": 95,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "TSR 1-2450",
+            "componentBrandEn": "TRACO POWER",
+            "componentCode": "C6886877",
+            "componentSpecificationEn": "-",
+            "overseasStockCount": 214,
+            "canPresaleNumber": 95,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C6886877",
+          "retrieved_at": "2026-11-03T14:48:17.761537+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:17 GMT",
+          "http_age": null,
+          "sha256": "79ebafd2b52b9d188cef8fbe14419d52d67076098f2e41b1da90fd3e51002188"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "TRACO POWER",
+      "query": "TSR 1-2450",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C6886877&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:16.596380+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:16 GMT",
+        "http_age": null,
+        "sha256": "3bd7f6b61e6dd115fd933870d92b7815e1058002ca09116dba8d24729f771f28",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        17
+      ]
+    },
+    {
+      "mpn": "SC0915",
+      "code": null,
+      "needed": 2,
+      "status": "NOT_FOUND",
+      "jlcsearch_stock": null,
+      "jlcpcb": {
+        "state": "not_located"
+      },
+      "query": "SC0915",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=SC0915&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:17.432305+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:17 GMT",
+        "http_age": null,
+        "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "state": "observed",
+        "returned_rows": 0
+      },
+      "bom_lines": [
+        18
+      ]
+    },
+    {
+      "mpn": "CMA-4544PF-W",
+      "code": null,
+      "needed": 8,
+      "status": "NOT_FOUND",
+      "jlcsearch_stock": null,
+      "jlcpcb": {
+        "state": "not_located"
+      },
+      "query": "CMA-4544PF-W",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=CMA-4544PF-W&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:17.535500+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:17 GMT",
+        "http_age": null,
+        "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "state": "observed",
+        "returned_rows": 0
+      },
+      "bom_lines": [
+        19
+      ]
+    },
+    {
+      "mpn": "CPE-203",
+      "code": null,
+      "needed": 8,
+      "status": "NOT_FOUND",
+      "jlcsearch_stock": null,
+      "jlcpcb": {
+        "state": "not_located"
+      },
+      "query": "CPE-203",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=CPE-203&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:17.560784+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:17 GMT",
+        "http_age": null,
+        "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "state": "observed",
+        "returned_rows": 0
+      },
+      "bom_lines": [
+        20
+      ]
+    },
+    {
+      "mpn": "PJ-102AH",
+      "code": "C3096093",
+      "needed": 2,
+      "manufacturer": "CUI",
+      "package": "Plugin",
+      "description": "-25℃~+85℃ 24V 2mm 5A 6.5mm DC Power Jack Right Angle Plugin DC Power Connectors ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-10-31T06:36:57.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "PJ-102AH",
+        "manufacturer": "CUI",
+        "package": "Plugin",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 991,
+        "presale": 893,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "PJ-102AH",
+            "componentBrandEn": "CUI",
+            "componentCode": "C3096093",
+            "componentSpecificationEn": "Plugin"
+          },
+          {
+            "componentModelEn": "PJ-102AH",
+            "componentBrandEn": "CUI",
+            "componentCode": "C3096093",
+            "componentSpecificationEn": "Plugin",
+            "overseasStockCount": 991,
+            "canPresaleNumber": 893,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "PJ-102AH",
+            "componentBrandEn": "CUI",
+            "componentCode": "C3096093",
+            "componentSpecificationEn": "Plugin",
+            "overseasStockCount": 991,
+            "canPresaleNumber": 893,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C3096093",
+          "retrieved_at": "2026-11-03T14:48:18.463503+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:18 GMT",
+          "http_age": null,
+          "sha256": "475650f6d83e64536dd2f3073f21c5dea61e62e42eb9607b14b740390ce19394"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "Same Sky",
+      "manufacturer_review": "Catalog spelling differs; confirm identity (no alias inferred).",
+      "query": "PJ-102AH",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C3096093&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:17.630188+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:17 GMT",
+        "http_age": null,
+        "sha256": "c4f6d0cb333cf27763e948f776dd61cee976db3c55695f283b5ca2dc4ce77608",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        21
+      ]
+    },
+    {
+      "mpn": "CL21B104KBCNNNC",
+      "code": "C1711",
+      "needed": 24,
+      "manufacturer": "Samsung Electro-Mechanics",
+      "package": "0805",
+      "description": "100nF 50V X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-11-02T11:32:07.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "CL21B104KBCNNNC",
+        "manufacturer": "Samsung Electro-Mechanics",
+        "package": "0805",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 1947727,
+        "presale": 1536833,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "CL21B104KBCNNNC",
+            "componentBrandEn": "Samsung Electro-Mechanics",
+            "componentCode": "C1711",
+            "componentSpecificationEn": "0805"
+          },
+          {
+            "componentModelEn": "CL21B104KBCNNNC",
+            "componentBrandEn": "Samsung Electro-Mechanics",
+            "componentCode": "C1711",
+            "componentSpecificationEn": "0805",
+            "overseasStockCount": 1947727,
+            "canPresaleNumber": 1536833,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "CL21B104KBCNNNC",
+            "componentBrandEn": "Samsung Electro-Mechanics",
+            "componentCode": "C1711",
+            "componentSpecificationEn": "0805",
+            "overseasStockCount": 1947727,
+            "canPresaleNumber": 1536833,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C1711",
+          "retrieved_at": "2026-11-03T14:48:18.390129+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:18 GMT",
+          "http_age": null,
+          "sha256": "07588c75262ae277fa56a831385dc9f3dd1eabef38cab1680b744842306ac842"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "Samsung Electro-Mechanics",
+      "query": "CL21B104KBCNNNC",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C1711&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:17.724077+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:17 GMT",
+        "http_age": null,
+        "sha256": "eff7adf7c9cc2db3ecc1998e0de9b580c8e9811b9e1d57138380eed6787c6254",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        22
+      ]
+    },
+    {
+      "mpn": "CL21C222JBFNNNE",
+      "code": "C28260",
+      "needed": 32,
+      "manufacturer": "Samsung Electro-Mechanics",
+      "package": "0805",
+      "description": "2.2nF 50V C0G ±5% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-11-02T16:36:14.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "CL21C222JBFNNNE",
+        "manufacturer": "Samsung Electro-Mechanics",
+        "package": "0805",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 179563,
+        "presale": 132741,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "CL21C222JBFNNNE",
+            "componentBrandEn": "Samsung Electro-Mechanics",
+            "componentCode": "C28260",
+            "componentSpecificationEn": "0805"
+          },
+          {
+            "componentModelEn": "CL21C222JBFNNNE",
+            "componentBrandEn": "Samsung Electro-Mechanics",
+            "componentCode": "C28260",
+            "componentSpecificationEn": "0805",
+            "overseasStockCount": 179563,
+            "canPresaleNumber": 132741,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "CL21C222JBFNNNE",
+            "componentBrandEn": "Samsung Electro-Mechanics",
+            "componentCode": "C28260",
+            "componentSpecificationEn": "0805",
+            "overseasStockCount": 179563,
+            "canPresaleNumber": 132741,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C28260",
+          "retrieved_at": "2026-11-03T14:48:18.359544+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:18 GMT",
+          "http_age": null,
+          "sha256": "9c85531b712e6bccf62f8ca998088fa9f1d60988d7475b170ad017677cc4c9c7"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "Samsung Electro-Mechanics",
+      "query": "CL21C222JBFNNNE",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C28260&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:17.726171+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:17 GMT",
+        "http_age": null,
+        "sha256": "0323b9df574a9d47ece62c8d3d9df3f9f189b5a78ae7d8fce03d2e586c1e71d2",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        23
+      ]
+    },
+    {
+      "mpn": "CL21B225KBYVPNE",
+      "code": "C5362585",
+      "needed": 8,
+      "manufacturer": "Samsung Electro-Mechanics",
+      "package": "0805",
+      "description": "2.2uF 50V X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-11-01T04:30:50.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "CL21B225KBYVPNE",
+        "manufacturer": "Samsung Electro-Mechanics",
+        "package": "0805",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 10460,
+        "presale": 9933,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "CL21B225KBYVPNE",
+            "componentBrandEn": "Samsung Electro-Mechanics",
+            "componentCode": "C5362585",
+            "componentSpecificationEn": "0805"
+          },
+          {
+            "componentModelEn": "CL21B225KBYVPNE",
+            "componentBrandEn": "Samsung Electro-Mechanics",
+            "componentCode": "C5362585",
+            "componentSpecificationEn": "0805",
+            "overseasStockCount": 10460,
+            "canPresaleNumber": 9933,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "CL21B225KBYVPNE",
+            "componentBrandEn": "Samsung Electro-Mechanics",
+            "componentCode": "C5362585",
+            "componentSpecificationEn": "0805",
+            "overseasStockCount": 10460,
+            "canPresaleNumber": 9933,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C5362585",
+          "retrieved_at": "2026-11-03T14:48:18.571192+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:18 GMT",
+          "http_age": null,
+          "sha256": "7058fc35e7c2d8d7accf721dbeb823ffdba8f5678fb4b12a8d0423b6eb42ffbb"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "Samsung Electro-Mechanics",
+      "query": "CL21B225KBYVPNE",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C5362585&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:17.908244+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:17 GMT",
+        "http_age": null,
+        "sha256": "874b1c7deb9ca24ab53fb925a97b334b362ed80d8cb1a2ed3f307d2206f9a8c4",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        24
+      ]
+    },
+    {
+      "mpn": "CL31B106KBHNNNE",
+      "code": "C89632",
+      "needed": 4,
+      "manufacturer": "Samsung Electro-Mechanics",
+      "package": "1206",
+      "description": "10uF 50V X7R ±10% 1206 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-11-02T01:34:31.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "CL31B106KBHNNNE",
+        "manufacturer": "Samsung Electro-Mechanics",
+        "package": "1206",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 742139,
+        "presale": 656325,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "CL31B106KBHNNNE",
+            "componentBrandEn": "Samsung Electro-Mechanics",
+            "componentCode": "C89632",
+            "componentSpecificationEn": "1206"
+          },
+          {
+            "componentModelEn": "CL31B106KBHNNNE",
+            "componentBrandEn": "Samsung Electro-Mechanics",
+            "componentCode": "C89632",
+            "componentSpecificationEn": "1206",
+            "overseasStockCount": 742139,
+            "canPresaleNumber": 656325,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "CL31B106KBHNNNE",
+            "componentBrandEn": "Samsung Electro-Mechanics",
+            "componentCode": "C89632",
+            "componentSpecificationEn": "1206",
+            "overseasStockCount": 742139,
+            "canPresaleNumber": 656325,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C89632",
+          "retrieved_at": "2026-11-03T14:48:18.484151+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:18 GMT",
+          "http_age": null,
+          "sha256": "14733188a673675247e8c2bf5c8f1dd131c8d8dc4f33350b16671bb3ed0215f4"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "Samsung Electro-Mechanics",
+      "query": "CL31B106KBHNNNE",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C89632&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:17.891680+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:17 GMT",
+        "http_age": null,
+        "sha256": "862f0a0ce01c0fb448e5bbe9c8b2664c63dbbbcd8a68541887b243c7f77375a5",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        25
+      ]
+    },
+    {
+      "mpn": "PCM1864DBTR",
+      "code": "C544855",
+      "needed": 4,
+      "manufacturer": "Texas Instruments",
+      "package": "TSSOP-30",
+      "description": "-40℃~+125℃ 1.65V 103dB 192kHz 24 3V~3.6V 4 Programmable gain、Multiplexers、Internal reference source、ESD protection SPI、I2C TSSOP-30 Analog Front End (AFE) ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-11-01T04:30:49.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "PCM1864DBTR",
+        "manufacturer": "Texas Instruments",
+        "package": "TSSOP-30",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 70,
+        "presale": 63,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "PCM1864DBTR",
+            "componentBrandEn": "Texas Instruments",
+            "componentCode": "C544855",
+            "componentSpecificationEn": "TSSOP-30"
+          },
+          {
+            "componentModelEn": "PCM1864DBTR",
+            "componentBrandEn": "Texas Instruments",
+            "componentCode": "C544855",
+            "componentSpecificationEn": "TSSOP-30",
+            "overseasStockCount": 70,
+            "canPresaleNumber": 63,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "PCM1864DBTR",
+            "componentBrandEn": "Texas Instruments",
+            "componentCode": "C544855",
+            "componentSpecificationEn": "TSSOP-30",
+            "overseasStockCount": 70,
+            "canPresaleNumber": 63,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C544855",
+          "retrieved_at": "2026-11-03T14:48:18.985246+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:18 GMT",
+          "http_age": null,
+          "sha256": "6f61758f0a8caeaf8acd273b4fd043337b83d1bede76c298982a979a326a44f9"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "Texas Instruments",
+      "query": "PCM1864DBTR",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C544855&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:18.165485+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:18 GMT",
+        "http_age": null,
+        "sha256": "60a54488e6e5ab32e18e798a2b8329f0fcbedcb4f4efb64297e9c79491909f24",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        26
+      ]
+    },
+    {
+      "mpn": "TLV9062IDR",
+      "code": "C398355",
+      "needed": 8,
+      "manufacturer": "Texas Instruments",
+      "package": "SOIC-8",
+      "description": "-40℃~+125℃ 0.05pA 0.5pA 1.6mV 1.8V~5.5V 103dB 10MHz 10nV/√Hz@1kHz 2 50mA 530nV/℃ 538uA 6.5V/us Enable/shutdown function、ESD protection、EMI filtering/RF suppression Rail-to-Rail Input, Rail-to-Rail Output SOIC-8 Operational Amplifier ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-10-31T15:28:47.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "TLV9062IDR",
+        "manufacturer": "Texas Instruments",
+        "package": "SOIC-8",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 194500,
+        "presale": 193577,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "TLV9062IDR",
+            "componentBrandEn": "Texas Instruments",
+            "componentCode": "C398355",
+            "componentSpecificationEn": "SOIC-8"
+          },
+          {
+            "componentModelEn": "TLV9062IDR",
+            "componentBrandEn": "Texas Instruments",
+            "componentCode": "C398355",
+            "componentSpecificationEn": "SOIC-8",
+            "overseasStockCount": 194500,
+            "canPresaleNumber": 193577,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "TLV9062IDR",
+            "componentBrandEn": "Texas Instruments",
+            "componentCode": "C398355",
+            "componentSpecificationEn": "SOIC-8",
+            "overseasStockCount": 194500,
+            "canPresaleNumber": 193577,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C398355",
+          "retrieved_at": "2026-11-03T14:48:19.251411+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:19 GMT",
+          "http_age": null,
+          "sha256": "fa5b9e02c683b7d7c71ca8d0e9330ce8a054f8b36cf23693b9bdfcd1b4bb3959"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "Texas Instruments",
+      "query": "TLV9062IDR",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C398355&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:18.528596+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:18 GMT",
+        "http_age": null,
+        "sha256": "60e688812c50d6f7cfd09f17a1f127c031d3dc0e0b7c2902200d03b32a03dc4f",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        27
+      ]
+    },
+    {
+      "mpn": "TPS70933DBVR",
+      "code": "C89347",
+      "needed": 8,
+      "manufacturer": "Texas Instruments",
+      "package": "SOT-23-5",
+      "description": "-40℃~+125℃@(Tj) 1 1.4uA 150mA 190uVrms 3.3V 30V 80dB@(10Hz) 960mV@(150mA) Fixed Over Current Protection、Thermal shutdown、Enable control、Input under-voltage protection、Reverse-polarity current protection Positive SOT-23-5 Voltage Regulators - Linear, Low Drop Out (LDO) Regulators ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-10-31T04:33:03.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "TPS70933DBVR",
+        "manufacturer": "Texas Instruments",
+        "package": "SOT-23-5",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 5093,
+        "presale": 3446,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "TPS70933DBVR",
+            "componentBrandEn": "Texas Instruments",
+            "componentCode": "C89347",
+            "componentSpecificationEn": "SOT-23-5"
+          },
+          {
+            "componentModelEn": "TPS70933DBVR",
+            "componentBrandEn": "Texas Instruments",
+            "componentCode": "C89347",
+            "componentSpecificationEn": "SOT-23-5",
+            "overseasStockCount": 5093,
+            "canPresaleNumber": 3446,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "TPS70933DBVR",
+            "componentBrandEn": "Texas Instruments",
+            "componentCode": "C89347",
+            "componentSpecificationEn": "SOT-23-5",
+            "overseasStockCount": 5093,
+            "canPresaleNumber": 3446,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C89347",
+          "retrieved_at": "2026-11-03T14:48:19.250832+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:19 GMT",
+          "http_age": null,
+          "sha256": "b232731399b0ecce73d590948bd320d74126ff62be68cb50b460825910c11316"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "Texas Instruments",
+      "query": "TPS70933DBVR",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C89347&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:18.645355+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:18 GMT",
+        "http_age": null,
+        "sha256": "fa200bccffde0264ab3ec14701ba54db095b265f7168d76a52120861706aa6c9",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        28
+      ]
+    },
+    {
+      "mpn": "CRCW0603100KFKEA",
+      "code": "C844916",
+      "needed": 32,
+      "manufacturer": "Vishay Intertech",
+      "package": "0603",
+      "description": "-55℃~+155℃ 100kΩ 100mW 75V Thick Film Resistor ±1% ±100ppm/℃ 0603 Chip Resistor - Surface Mount ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-10-31T20:33:47.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "CRCW0603100KFKEA",
+        "manufacturer": "Vishay Intertech",
+        "package": "0603",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 1033656,
+        "presale": 1022504,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "CRCW0603100KFKEA",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C844916",
+            "componentSpecificationEn": "0603"
+          },
+          {
+            "componentModelEn": "CRCW0603100KFKEA",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C844916",
+            "componentSpecificationEn": "0603",
+            "overseasStockCount": 1033656,
+            "canPresaleNumber": 1022504,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "CRCW0603100KFKEA",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C844916",
+            "componentSpecificationEn": "0603",
+            "overseasStockCount": 1033656,
+            "canPresaleNumber": 1022504,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C844916",
+          "retrieved_at": "2026-11-03T14:48:19.381865+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:19 GMT",
+          "http_age": null,
+          "sha256": "ee97f47326c6fe4cae8b2e148d3255a639dfc59eaff33d1e0bf83af701f65410"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "Vishay",
+      "manufacturer_review": "Catalog spelling differs; confirm identity (no alias inferred).",
+      "query": "CRCW0603100KFKEA",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C844916&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:18.606614+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:18 GMT",
+        "http_age": null,
+        "sha256": "d20794cc6e6f65e1099b11ee281d26778c17c5facce7dde70740a89a25cc4a7e",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        29
+      ]
+    },
+    {
+      "mpn": "CRCW060310K0FKEA",
+      "code": "C844918",
+      "needed": 48,
+      "manufacturer": "Vishay Intertech",
+      "package": "0603",
+      "description": "-55℃~+155℃ 100mW 10kΩ 75V Thick Film Resistor ±1% ±100ppm/℃ 0603 Chip Resistor - Surface Mount ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-10-31T17:31:37.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "CRCW060310K0FKEA",
+        "manufacturer": "Vishay Intertech",
+        "package": "0603",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 1274379,
+        "presale": 1097585,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "CRCW060310K0FKEA",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C844918",
+            "componentSpecificationEn": "0603"
+          },
+          {
+            "componentModelEn": "CRCW060310K0FKEA",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C844918",
+            "componentSpecificationEn": "0603",
+            "overseasStockCount": 1274379,
+            "canPresaleNumber": 1097585,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "CRCW060310K0FKEA",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C844918",
+            "componentSpecificationEn": "0603",
+            "overseasStockCount": 1274379,
+            "canPresaleNumber": 1097585,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C844918",
+          "retrieved_at": "2026-11-03T14:48:19.416835+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:19 GMT",
+          "http_age": null,
+          "sha256": "1d7772085ea7ca3c213f39fa749f53f17df1cfe08fdb20b745888c74edfee034"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "Vishay",
+      "manufacturer_review": "Catalog spelling differs; confirm identity (no alias inferred).",
+      "query": "CRCW060310K0FKEA",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C844918&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:18.679341+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:18 GMT",
+        "http_age": null,
+        "sha256": "b86332b688aa19f2d01fd225f85717572ed30ee845666ce004f3f7f95f217388",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        30
+      ]
+    },
+    {
+      "mpn": "CRCW06031K00FKEAHP",
+      "code": "C844747",
+      "needed": 24,
+      "manufacturer": "Vishay Intertech",
+      "package": "0603",
+      "description": "-55℃~+155℃ 1kΩ 330mW 75V Thick Film Resistor ±1% ±100ppm/℃ 0603 Chip Resistor - Surface Mount ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-10-31T20:33:46.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "CRCW06031K00FKEAHP",
+        "manufacturer": "Vishay Intertech",
+        "package": "0603",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 58699,
+        "presale": 58316,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "CRCW06031K00FKEAHP",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C844747",
+            "componentSpecificationEn": "0603"
+          },
+          {
+            "componentModelEn": "CRCW06031K00FKEAHP",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C844747",
+            "componentSpecificationEn": "0603",
+            "overseasStockCount": 58699,
+            "canPresaleNumber": 58316,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "CRCW06031K00FKEAHP",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C844747",
+            "componentSpecificationEn": "0603",
+            "overseasStockCount": 58699,
+            "canPresaleNumber": 58316,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C844747",
+          "retrieved_at": "2026-11-03T14:48:19.466783+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:19 GMT",
+          "http_age": null,
+          "sha256": "cf1a588f56ba5a2724e4af41770be6759e1501a83f03075b5f64ecbe46bc8e57"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "Vishay",
+      "manufacturer_review": "Catalog spelling differs; confirm identity (no alias inferred).",
+      "query": "CRCW06031K00FKEAHP",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C844747&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:18.725085+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:18 GMT",
+        "http_age": null,
+        "sha256": "230eac086ae1f230e9f43a61759b11a6d928a54be29eb0ebee2f8de0138d921e",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        31
+      ]
+    },
+    {
+      "mpn": "CRCW06032K20FKEA",
+      "code": "C844925",
+      "needed": 8,
+      "manufacturer": "Vishay Intertech",
+      "package": "0603",
+      "description": "-55℃~+155℃ 100mW 2.2kΩ 75V Thick Film Resistor ±1% ±100ppm/℃ 0603 Chip Resistor - Surface Mount ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-10-31T20:33:44.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "CRCW06032K20FKEA",
+        "manufacturer": "Vishay Intertech",
+        "package": "0603",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 87531,
+        "presale": 87154,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "CRCW06032K20FKEA",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C844925",
+            "componentSpecificationEn": "0603"
+          },
+          {
+            "componentModelEn": "CRCW06032K20FKEA",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C844925",
+            "componentSpecificationEn": "0603",
+            "overseasStockCount": 87531,
+            "canPresaleNumber": 87154,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "CRCW06032K20FKEA",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C844925",
+            "componentSpecificationEn": "0603",
+            "overseasStockCount": 87531,
+            "canPresaleNumber": 87154,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C844925",
+          "retrieved_at": "2026-11-03T14:48:19.853091+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:19 GMT",
+          "http_age": null,
+          "sha256": "73de6ffbceb912741f2e3c1dc86ef189919c605d54994b43e60228e2f9643c91"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "Vishay",
+      "manufacturer_review": "Catalog spelling differs; confirm identity (no alias inferred).",
+      "query": "CRCW06032K20FKEA",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C844925&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:19.188737+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:19 GMT",
+        "http_age": null,
+        "sha256": "5bf6e7243c8ea8ea37a1a30b69bb227ce578eb8c547a57285fc1874c54c62be8",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        32
+      ]
+    },
+    {
+      "mpn": "CRCW06032K70FKEA",
+      "code": "C844770",
+      "needed": 32,
+      "manufacturer": "Vishay Intertech",
+      "package": "0603",
+      "description": "-55℃~+155℃ 100mW 2.7kΩ 75V Thick Film Resistor ±1% ±100ppm/℃ 0603 Chip Resistor - Surface Mount ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-10-31T20:33:25.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "CRCW06032K70FKEA",
+        "manufacturer": "Vishay Intertech",
+        "package": "0603",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 29620,
+        "presale": 29609,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "CRCW06032K70FKEA",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C844770",
+            "componentSpecificationEn": "0603"
+          },
+          {
+            "componentModelEn": "CRCW06032K70FKEA",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C844770",
+            "componentSpecificationEn": "0603",
+            "overseasStockCount": 29620,
+            "canPresaleNumber": 29609,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "CRCW06032K70FKEA",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C844770",
+            "componentSpecificationEn": "0603",
+            "overseasStockCount": 29620,
+            "canPresaleNumber": 29609,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C844770",
+          "retrieved_at": "2026-11-03T14:48:20.303366+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:20 GMT",
+          "http_age": null,
+          "sha256": "c746581990cf41a1ccd57e6d5c723b8304da1999c4193bd299791d9f9d2b96c5"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "Vishay",
+      "manufacturer_review": "Catalog spelling differs; confirm identity (no alias inferred).",
+      "query": "CRCW06032K70FKEA",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C844770&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:19.462388+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:19 GMT",
+        "http_age": null,
+        "sha256": "e98d8472a1b626c08908f4c34dd3d0507cf20d3ce461fe2918b8ff62b6949ebc",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        33
+      ]
+    },
+    {
+      "mpn": "CRCW0603330RFKEAHP",
+      "code": "C844355",
+      "needed": 8,
+      "manufacturer": "Vishay Intertech",
+      "package": "0603",
+      "description": "-55℃~+155℃ 330Ω 333mW Thick Film Resistor ±1% ±100ppm/℃ 0603 Chip Resistor - Surface Mount ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-10-31T20:33:38.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "CRCW0603330RFKEAHP",
+        "manufacturer": "Vishay Intertech",
+        "package": "0603",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 745,
+        "presale": 367,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "CRCW0603330RFKEAHP",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C844355",
+            "componentSpecificationEn": "0603"
+          },
+          {
+            "componentModelEn": "CRCW0603330RFKEAHP",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C844355",
+            "componentSpecificationEn": "0603",
+            "overseasStockCount": 745,
+            "canPresaleNumber": 367,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "CRCW0603330RFKEAHP",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C844355",
+            "componentSpecificationEn": "0603",
+            "overseasStockCount": 745,
+            "canPresaleNumber": 367,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C844355",
+          "retrieved_at": "2026-11-03T14:48:20.206664+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:20 GMT",
+          "http_age": null,
+          "sha256": "e8b66b4716e6c15ff9dfdc7644ad7537d2bc1bff2c4b65d5aa18b383923bc1e6"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "Vishay",
+      "manufacturer_review": "Catalog spelling differs; confirm identity (no alias inferred).",
+      "query": "CRCW0603330RFKEAHP",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C844355&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:19.461216+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:19 GMT",
+        "http_age": null,
+        "sha256": "a9fdb938c0e0bb76b78f8996723bb682fb7962757b0caccbc18a97c9b0e90ec7",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        34
+      ]
+    },
+    {
+      "mpn": "CRCW060339K0FKEA",
+      "code": "C844779",
+      "needed": 8,
+      "manufacturer": "Vishay Intertech",
+      "package": "0603",
+      "description": "-55℃~+155℃ 100mW 39kΩ 75V Thick Film Resistor ±1% ±100ppm/℃ 0603 Chip Resistor - Surface Mount ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-10-31T20:33:43.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "CRCW060339K0FKEA",
+        "manufacturer": "Vishay Intertech",
+        "package": "0603",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 42728,
+        "presale": 42531,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "CRCW060339K0FKEA",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C844779",
+            "componentSpecificationEn": "0603"
+          },
+          {
+            "componentModelEn": "CRCW060339K0FKEA",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C844779",
+            "componentSpecificationEn": "0603",
+            "overseasStockCount": 42728,
+            "canPresaleNumber": 42531,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "CRCW060339K0FKEA",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C844779",
+            "componentSpecificationEn": "0603",
+            "overseasStockCount": 42728,
+            "canPresaleNumber": 42531,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C844779",
+          "retrieved_at": "2026-11-03T14:48:20.262015+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:20 GMT",
+          "http_age": null,
+          "sha256": "ff13bb405ecb7bcc7b2dafc8c0a717c183dee7a83f714ff7a665ebfd1f2a19ac"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "Vishay",
+      "manufacturer_review": "Catalog spelling differs; confirm identity (no alias inferred).",
+      "query": "CRCW060339K0FKEA",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C844779&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:19.531822+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:19 GMT",
+        "http_age": null,
+        "sha256": "3e3d0aeb285fb4811e42cd18634d8951bf779cee57dd3ba44f2e7c3e79a36971",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        35
+      ]
+    },
+    {
+      "mpn": "CRCW06034K70FKEA",
+      "code": "C844931",
+      "needed": 4,
+      "manufacturer": "Vishay Intertech",
+      "package": "0603",
+      "description": "-55℃~+155℃ 100mW 4.7kΩ 75V Thick Film Resistor ±1% ±100ppm/℃ 0603 Chip Resistor - Surface Mount ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-10-31T20:33:24.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "CRCW06034K70FKEA",
+        "manufacturer": "Vishay Intertech",
+        "package": "0603",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 1101203,
+        "presale": 1096866,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "CRCW06034K70FKEA",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C844931",
+            "componentSpecificationEn": "0603"
+          },
+          {
+            "componentModelEn": "CRCW06034K70FKEA",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C844931",
+            "componentSpecificationEn": "0603",
+            "overseasStockCount": 1101203,
+            "canPresaleNumber": 1096866,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "CRCW06034K70FKEA",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C844931",
+            "componentSpecificationEn": "0603",
+            "overseasStockCount": 1101203,
+            "canPresaleNumber": 1096866,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C844931",
+          "retrieved_at": "2026-11-03T14:48:20.316916+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:20 GMT",
+          "http_age": null,
+          "sha256": "8088a4186e29de5b2ff969a24148aaea09d53e088b05b28f674c3a3980ff9a5f"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "Vishay",
+      "manufacturer_review": "Catalog spelling differs; confirm identity (no alias inferred).",
+      "query": "CRCW06034K70FKEA",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C844931&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:19.570940+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:19 GMT",
+        "http_age": null,
+        "sha256": "207f4fa6c17ab86006b6d8f8df1297329997eefb0234061ba094ac3120ed487c",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        36
+      ]
+    },
+    {
+      "mpn": "SS34-E3/57T",
+      "code": "C13354",
+      "needed": 2,
+      "manufacturer": "Vishay Intertech",
+      "package": "SMC(DO-214AB)",
+      "description": "-55℃~+125℃ 1 Independent 100A 3A 40V 500mV@3A 500uA@40V SMC(DO-214AB) Schottky Diodes ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-10-31T20:33:23.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "SS34-E3/57T",
+        "manufacturer": "Vishay Intertech",
+        "package": "SMC(DO-214AB)",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 6349,
+        "presale": 6253,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "SS34-E3/57T",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C13354",
+            "componentSpecificationEn": "SMC(DO-214AB)"
+          },
+          {
+            "componentModelEn": "SS34-E3/57T",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C13354",
+            "componentSpecificationEn": "SMC(DO-214AB)",
+            "overseasStockCount": 6349,
+            "canPresaleNumber": 6253,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "SS34-E3/57T",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C13354",
+            "componentSpecificationEn": "SMC(DO-214AB)",
+            "overseasStockCount": 6349,
+            "canPresaleNumber": 6253,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C13354",
+          "retrieved_at": "2026-11-03T14:48:20.400616+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:20 GMT",
+          "http_age": null,
+          "sha256": "d53a055755b6f791f495a52433bbdae666740d09247142ce3bdad6faef79b699"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "Vishay",
+      "manufacturer_review": "Catalog spelling differs; confirm identity (no alias inferred).",
+      "query": "SS34-E3/57T",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C13354&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:19.757654+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:19 GMT",
+        "http_age": null,
+        "sha256": "212f47dfd51a55a028be6251e0f885e355a546451a0e08027d86f9340fe3a5ea",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        37
+      ]
+    },
+    {
+      "mpn": "CRCW060356R0FKEA",
+      "code": "C844179",
+      "needed": 4,
+      "manufacturer": "Vishay Intertech",
+      "package": "0603",
+      "description": "-55℃~+155℃ 100mW 56Ω 75V Thick Film Resistor ±1% ±100ppm/℃ 0603 Chip Resistor - Surface Mount ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-10-31T20:33:22.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "CRCW060356R0FKEA",
+        "manufacturer": "Vishay Intertech",
+        "package": "0603",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 31170,
+        "presale": 30343,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "CRCW060356R0FKEA",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C844179",
+            "componentSpecificationEn": "0603"
+          },
+          {
+            "componentModelEn": "CRCW060356R0FKEA",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C844179",
+            "componentSpecificationEn": "0603",
+            "overseasStockCount": 31170,
+            "canPresaleNumber": 30343,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "CRCW060356R0FKEA",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C844179",
+            "componentSpecificationEn": "0603",
+            "overseasStockCount": 31170,
+            "canPresaleNumber": 30343,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C844179",
+          "retrieved_at": "2026-11-03T14:48:20.747941+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:20 GMT",
+          "http_age": null,
+          "sha256": "307fd1a412049218eb64ddc88d7a5a7bf5674d5a4e4ca682cdbffdac992aa122"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "Vishay Dale",
+      "manufacturer_review": "Catalog spelling differs; confirm identity (no alias inferred).",
+      "query": "CRCW060356R0FKEA",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C844179&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:20.017772+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:20 GMT",
+        "http_age": null,
+        "sha256": "8bf51d3189002e6771b751af666c10a9b29a982e4119f30767ae77ce2cbf1178",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        38
+      ]
+    },
+    {
+      "mpn": "MMBT3906LT1G",
+      "code": "C53444",
+      "needed": 8,
+      "manufacturer": "onsemi",
+      "package": "SOT-23",
+      "description": "-55℃~+150℃ 1 PNP 200mA 225mW 250MHz 250mV 40V 50nA 5V 60 PNP SOT-23 Bipolar (BJT) ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-10-31T00:48:26.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "MMBT3906LT1G",
+        "manufacturer": "onsemi",
+        "package": "SOT-23",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 883659,
+        "presale": 881816,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "MMBT3906LT1G",
+            "componentBrandEn": "onsemi",
+            "componentCode": "C53444",
+            "componentSpecificationEn": "SOT-23"
+          },
+          {
+            "componentModelEn": "MMBT3906LT1G",
+            "componentBrandEn": "onsemi",
+            "componentCode": "C53444",
+            "componentSpecificationEn": "SOT-23",
+            "overseasStockCount": 883659,
+            "canPresaleNumber": 881816,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "MMBT3906LT1G",
+            "componentBrandEn": "onsemi",
+            "componentCode": "C53444",
+            "componentSpecificationEn": "SOT-23",
+            "overseasStockCount": 883659,
+            "canPresaleNumber": 881816,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C53444",
+          "retrieved_at": "2026-11-03T14:48:21.279896+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:48:21 GMT",
+          "http_age": null,
+          "sha256": "59f465ef75d5c58bc4bef545b6839c4259571ec0c97dd24db1668ef94d9157f4"
+        }
+      },
+      "status": "IN_STOCK_QTY_UNKNOWN",
+      "requested_manufacturer": "onsemi",
+      "query": "MMBT3906LT1G",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C53444&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:48:20.351106+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:48:20 GMT",
+        "http_age": null,
+        "sha256": "1f3c496b8cea416f5d5731534f0e8134d22d943d566aba47376ff2d190fdc990",
+        "state": "observed",
+        "returned_rows": 1
+      },
+      "bom_lines": [
+        39
+      ]
+    }
+  ],
+  "boards": 1,
+  "unique_bom_identities": 38
+}

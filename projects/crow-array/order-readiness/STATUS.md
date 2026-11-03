@@ -1,5 +1,21 @@
 # Crow exact-job order readiness
 
+## Release sourcing refresh on 3 November 2026
+
+The [38-part refresh and diode shortlist](release-refresh-20261103/README.md)
+cover two assembled carriers/eight pods including the home-install lines.
+Public counts do not establish immediate PCBA allocation. BAT54S-7-F remains
+short in the signed-in draft (4 available, 21 gross needed); exact-code public
+recovery is consistent with that shortage. Nexperia BAT54S,215 / C47546 and
+BAT54S-QR / C7507573 are credible same-footprint candidates, not adopted parts.
+Exact-job supply and remaining fault/temperature/placement checks precede any
+production update. Native boards, r10 and JLC drafts remain unchanged.
+
+TinyFish is not currently installed; reconnection was offered. New pod C draft
+retains its verified saved pose, with model/hash and outward mouth still open.
+Carrier connectors and process acceptance remain open. Final release is HOLD;
+the goal stays active. No purchases, reservations or vendor messages.
+
 ## 3 November: pod trial-C saved coordinates verified; mechanical review open
 
 [Session report and sanitized evidence](quote-tests/r10-connector-mapping/macbook-c-session-20261103/README.md)
