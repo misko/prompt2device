@@ -1,5 +1,20 @@
 # Crow exact-job order readiness
 
+## 3 November: new pod C draft exists; saved placement remains unverified
+
+[Session report and prior-session screenshot](quote-tests/r10-connector-mapping/macbook-c-session-20261103/README.md)
+record the separate diagnostic C draft, uploaded files, selected C599441 match,
+and pending saved-coordinate/model/mouth checks. The 3 November browser tool
+reports local browser use disabled despite the user reporting it enabled.
+No fresh live verification was possible. Prior viewer-arrow clicks and subsequent
+C reprocessing do not prove the effective placement. Keep all manufacturing holds.
+The user's fresh-draft instruction leaves old baseline A untouched and keeps the
+new C draft diagnostic; do not overwrite either merely to repeat the experiment.
+No purchases, reservations or manufacturing commitments.
+
+Earlier dated findings below are historical; their draft-unchanged and
+restore-A statements do not describe the subsequent separate C-draft session.
+
 ## Current next step: captured J1 geometry supports test C
 
 The [backend numerical review](quote-tests/r10-connector-mapping/LOADED-J1-REVIEW.md)
