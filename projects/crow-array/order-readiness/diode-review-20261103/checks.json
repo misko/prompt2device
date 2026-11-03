@@ -1,0 +1,34 @@
+{
+  "calculations": {
+    "candidate_ambient_C": [
+      -55,
+      150
+    ],
+    "carrier_history_branch_A": 0.003895794986906098,
+    "conditional_pod_branch_A": 0.010484646464646464,
+    "diode_power_W_at_allocated_0_6V": 0.006290787878787878,
+    "off_rail_V": 2.5969369382716048,
+    "operating_air_C": [
+      -20,
+      60
+    ],
+    "reference_delta_C_at_500K_W": 3.145393939393939
+  },
+  "candidate": "Nexperia BAT54S,215 / C47546",
+  "limitations": [
+    "No all-temperature clamp-voltage guarantee",
+    "No live vendor placement or immediate PCBA inventory verification",
+    "No independent substitution acceptance; no BOM/CAD changes"
+  ],
+  "production_ready": false,
+  "sources": {
+    "projects/crow-array/order-readiness/diode-review-20261103/check.py": "21b623dcc53b882f4f56880a7f58cdaf924a75d4e1bd7e1478df95cff004dfd0",
+    "projects/crow-array/order-readiness/diode-review-20261103/source-evidence/BRIEF-historical.md": "2fd110154d1234840a285f95d1b87f92219a32dbe1b8bcd7dc4ae18386c86699",
+    "projects/crow-array/order-readiness/diode-review-20261103/source-evidence/ROOF-INTERFACE.md": "f2dcad8c938e0e821ae41b691323df86471751a467dc023f018ac8575c95f0ed",
+    "projects/crow-array/order-readiness/diode-review-20261103/source-evidence/roof_model.py": "00a8fa68bec9aac577e75cd541c3803657ef287a99087ccf4980006f5a65ab37",
+    "projects/crow-array/order-readiness/quote-draft/r10-2c8p-outward-power/native/pcb/carrier/carrier.kicad_pcb": "1fc774524ef57efdd3a644de338328837e42ba648d3a4dd6bb78bad44e8852a1",
+    "projects/crow-array/order-readiness/quote-draft/r10-2c8p-outward-power/native/pcb/pod/pod.kicad_pcb": "d67134d2361f32f25a1f8841134f21f84791d3d36ede1acb74b383d5b007ceb9",
+    "projects/crow-array/releases/crow-prototype-v3-first-run-5c10p-public-v1/evidence/archive-manifest.json": "97d98924da353325c3297f1886abdf5d305ede273d3100a5ce056f19ea15df56"
+  },
+  "status": "CONDITIONAL_ENGINEERING_SCREEN_ONLY"
+}

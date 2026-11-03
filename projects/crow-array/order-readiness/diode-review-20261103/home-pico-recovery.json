@@ -1,0 +1,77 @@
+{
+  "schema": "jlc-stock-v1",
+  "command": "part",
+  "input": "SC0915",
+  "created_at": "2026-11-03T14:56:47.609839+00:00",
+  "notice": "Reported public snapshots, not reserved PCBA inventory. Unknown is not zero. Overseas/presale pools are separate and never added. No purchasing actions.",
+  "results": [
+    {
+      "mpn": "SC0915",
+      "code": "C9900019762",
+      "needed": 2,
+      "manufacturer": "JLCPCB Assembly",
+      "package": "LCC-43",
+      "description": "LCC-43 SMT ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-10-31T20:33:21.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "SC0915",
+        "manufacturer": "JLCPCB Assembly",
+        "package": "LCC-43",
+        "availability": "OutOfStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 0,
+        "presale": 0,
+        "buy_enabled": "0",
+        "reason": "This product is no longer manufactured.",
+        "raw_fields": [
+          {
+            "componentModelEn": "SC0915",
+            "componentBrandEn": "JLCPCB Assembly",
+            "componentCode": "C9900019762",
+            "componentSpecificationEn": "LCC-43"
+          },
+          {
+            "componentModelEn": "SC0915",
+            "componentBrandEn": "JLCPCB Assembly",
+            "componentCode": "C9900019762",
+            "componentSpecificationEn": "LCC-43",
+            "overseasStockCount": 0,
+            "canPresaleNumber": 0,
+            "isBuyComponent": "0"
+          },
+          {
+            "componentModelEn": "SC0915",
+            "componentBrandEn": "JLCPCB Assembly",
+            "componentCode": "C9900019762",
+            "componentSpecificationEn": "LCC-43",
+            "overseasStockCount": 0,
+            "canPresaleNumber": 0,
+            "isBuyComponent": "0",
+            "noBuyReason": "This product is no longer manufactured."
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C9900019762",
+          "retrieved_at": "2026-11-03T14:56:48.396948+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:56:48 GMT",
+          "http_age": null,
+          "sha256": "926ca254a61a393d673aedbbf1e02e612a42b797d1716f9858e7119f463db1c3"
+        }
+      },
+      "status": "NOT_ORDERABLE",
+      "query": "SC0915",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C9900019762&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:56:47.861925+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:56:47 GMT",
+        "http_age": null,
+        "sha256": "b4ebfaf1b1729cb7bba241e5c4adacd3fc2dea4dff2c0d33d5107ac394108afe",
+        "state": "observed",
+        "returned_rows": 1
+      }
+    }
+  ]
+}

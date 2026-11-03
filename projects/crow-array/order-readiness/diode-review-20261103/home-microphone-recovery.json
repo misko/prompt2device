@@ -1,0 +1,77 @@
+{
+  "schema": "jlc-stock-v1",
+  "command": "part",
+  "input": "CMA-4544PF-W",
+  "created_at": "2026-11-03T14:56:46.635985+00:00",
+  "notice": "Reported public snapshots, not reserved PCBA inventory. Unknown is not zero. Overseas/presale pools are separate and never added. No purchasing actions.",
+  "results": [
+    {
+      "mpn": "CMA-4544PF-W",
+      "code": "C3273770",
+      "needed": 8,
+      "manufacturer": "CUI",
+      "package": "Plugin,D=9.7mm",
+      "description": "-44dB@±2dB 2.2kΩ 3V~10V 4.65mm 500uA 60dB 9.7mm Omnidirectional 插件,D=9.7mm Microphones ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-10-31T20:33:22.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "CMA-4544PF-W",
+        "manufacturer": "CUI",
+        "package": "Plugin,D=9.7mm",
+        "availability": "OutOfStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 0,
+        "presale": 0,
+        "buy_enabled": "0",
+        "reason": "This product is no longer manufactured.",
+        "raw_fields": [
+          {
+            "componentModelEn": "CMA-4544PF-W",
+            "componentBrandEn": "CUI",
+            "componentCode": "C3273770",
+            "componentSpecificationEn": "Plugin,D=9.7mm"
+          },
+          {
+            "componentModelEn": "CMA-4544PF-W",
+            "componentBrandEn": "CUI",
+            "componentCode": "C3273770",
+            "componentSpecificationEn": "Plugin,D=9.7mm",
+            "overseasStockCount": 0,
+            "canPresaleNumber": 0,
+            "isBuyComponent": "0"
+          },
+          {
+            "componentModelEn": "CMA-4544PF-W",
+            "componentBrandEn": "CUI",
+            "componentCode": "C3273770",
+            "componentSpecificationEn": "Plugin,D=9.7mm",
+            "overseasStockCount": 0,
+            "canPresaleNumber": 0,
+            "isBuyComponent": "0",
+            "noBuyReason": "This product is no longer manufactured."
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C3273770",
+          "retrieved_at": "2026-11-03T14:56:47.554205+00:00",
+          "http_date": "Tue, 03 Nov 2026 14:56:47 GMT",
+          "http_age": null,
+          "sha256": "7eec0b4de51b8a76176ddeaa40ecf4ac1e26f7a60a917b134ac1be9360384705"
+        }
+      },
+      "status": "NOT_ORDERABLE",
+      "query": "CMA-4544PF-W",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C3273770&limit=100&full=true",
+        "retrieved_at": "2026-11-03T14:56:46.923110+00:00",
+        "http_date": "Tue, 03 Nov 2026 14:56:46 GMT",
+        "http_age": null,
+        "sha256": "64ccc831df0d27877d6f7f32f644f290beccd624a84e2efea0c58709abb34efc",
+        "state": "observed",
+        "returned_rows": 1
+      }
+    }
+  ]
+}

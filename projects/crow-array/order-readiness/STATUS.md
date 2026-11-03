@@ -1,5 +1,23 @@
 # Crow exact-job order readiness
 
+## Diode candidate engineering screen completed on 3 November 2026
+
+[Nexperia BAT54S,215 / C47546 review](diode-review-20261103/README.md) now
+reconciles the actual r10 clamp topology with the archived protection model.
+Source hashes match the published historical manifest; all sixteen carrier
+isolation legs, both pod output resistors and the required sink remain correct.
+The existing bounded model does not rely on the original 600 mA long-pulse rating;
+candidate temperature range covers the unchanged −20…60 °C electronics envelope.
+SOL 6.1 high independently conditionally recommends the candidate; five tests pass.
+No candidate was adopted. Exact-job stock and vendor placement precede a new
+package; all-temperature waveform and actual thermal limits remain prototype
+qualification conditions, not newly guaranteed facts.
+
+Exact-code recovery also found JLC microphone/Pico listings not orderable;
+those catalog flags do not independently establish manufacturer lifecycle.
+Clarification of all-JLC sourcing versus agreed external home-install sources
+is pending. No production files or drafts changed. Goal active, release HOLD.
+
 ## Release sourcing refresh on 3 November 2026
 
 The [38-part refresh and diode shortlist](release-refresh-20261103/README.md)
